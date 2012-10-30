@@ -150,16 +150,17 @@ class TemplateMgr
     /*
     * get Language Variable
     * replace $search with $replace before returning
-    * useFormal:
-    *  - 0: we do not use a formal variable.
-    *  - 1: if sUser has set user_address_formally to 1, we try to use a formal variable.
-    *  - 2: we always try to use a formal variable.
     */
     public function getString($key, $search = false, $replace = false)
     {
         global $sUser;
 
         $keys = Array();
+
+        if(POSTS_ANON)
+        {
+            array_push($keys, $key."_ANON");
+        }
         array_push($keys, $key);
 
         // return the first hit in the localization table

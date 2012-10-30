@@ -95,6 +95,7 @@ INSERT INTO `localization` (`loc_key`, `loc_language`, `loc_val`) VALUES
 ('PROFILE_SIGNUP_DATE', 'de', 'Anmelde-Datum: [SIGNUP_DATE]'),
 ('QUESTION_ARGUMENTS', 'de', '[NUM_ARGUMENTS]'),
 ('QUESTION_AUTHOR', 'de', 'Eingetragen [TIMESINCE] von [USERNAME]'),
+('QUESTION_AUTHOR_ANON', 'de', 'Eingetragen [TIMESINCE]'),
 ('QUESTION_DISTRIBUTION_CON_PERC', 'de', 'Nein [PERC]%'),
 ('QUESTION_DISTRIBUTION_NUM_CHECKINS', 'de', '[NUM] Stimmen'),
 ('QUESTION_DISTRIBUTION_NUM_CHECKINS_NULL', 'de', '[NUM] Stimmen'),

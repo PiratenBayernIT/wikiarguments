@@ -72,6 +72,8 @@ define("CSS_USE_MIN",                       false);
 define("CSS_USE_SPRITES",                   false);
 define("LANG_USE_CACHE",                    false);
 
+define("POSTS_ANON",                        false);
+
 define("QUESTIONS_PER_PAGE",                10);
 
 define("MAX_ARGUMENT_CHR_LENGTH",           25);

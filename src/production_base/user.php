@@ -149,6 +149,10 @@ class User
 
     public function getUserName()
     {
+        if(POSTS_ANON)
+        {
+            return "XXXXX";
+        }
         return $this->userName;
     }
 
