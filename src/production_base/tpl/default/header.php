@@ -100,7 +100,7 @@ var wikiarguments = new _Wikiarguments();
   <div id = "wrapper">
     <div id = "header">
 
-      <div id = "header_blue"></div>
+      <div id = "header_top"></div>
       <div id = "header_white"></div>
 
       <div id = "header_content">

@@ -99,6 +99,19 @@ a {
   background-repeat: repeat-x;
 }
 
+#header_top {
+  background: #4C728A !important;
+  background-image: linear-gradient(bottom, #4C728A 0%, #749BB4 100%) !important;
+  background-image: -o-linear-gradient(bottom, #4C728A 0%, #749BB4 100%) !important;
+  background-image: -moz-linear-gradient(bottom, #4C728A 0%, #749BB4 100%) !important;
+  background-image: -webkit-linear-gradient(bottom, #4C728A 0%, #749BB4 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#749BB4', endColorstr='#4C728A') !important;
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#749BB4', endColorstr='#4C728A')" !important;
+  background: -moz-linear-gradient(top,  rgba(51,129,205,0.9) 0%, rgba(50,117,183,0.9) 100%);
+  height: 54px;
+  width: 100%;
+}
+
 #header_white {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_navigation_background.png');
   height: 76px;
