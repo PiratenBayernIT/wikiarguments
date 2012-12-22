@@ -40,7 +40,8 @@ $language   = $sTemplate->getLangBase();
 <? include($sTemplate->getTemplateRootAbs()."header.php"); ?>
 
 <div id = "content">
-<br><br><br><br><br>
+Siehe:
+<a href="http://it.piratenpartei-bayern.de/impressum/">Impressum Bayern IT</a>
 
 </div>
 
