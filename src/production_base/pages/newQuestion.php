@@ -138,8 +138,11 @@ class PageNewQuestion extends Page
         $additionalData->numCheckIns = 0;
         $additionalData->tags        = array_unique($tagsNoQuestion);
 
+        // sanitize input because details isn't sanitized in the rendering process
+        $details_sanitized = htmlspecialchars($details);
+
         $sDB->exec("INSERT INTO `questions` (`questionId`, `title`, `url`, `details`, `dateAdded`, `userId`, `score`, `scoreTrending`, `scoreTop`, `additionalData`) VALUES
-                                            (NULL, '".mysql_real_escape_string($question)."', '".mysql_real_escape_string($url)."', '".mysql_real_escape_string($details)."',
+                                            (NULL, '".mysql_real_escape_string($question)."', '".mysql_real_escape_string($url)."', '".mysql_real_escape_string($details_sanitized)."',
                                              '".time()."', '".$sUser->getUserId()."', '0', '0', '0', '".serialize($additionalData)."');");
 
         $questionId = mysql_insert_id();
