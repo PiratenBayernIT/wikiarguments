@@ -16,10 +16,15 @@ class HTMLMail {
     var $textheader     = '';
     var $errors         = array();
 
-    function HTMLMail($toname, $toemail, $fromname, $fromemail)
+    function HTMLMail($toname, $toemail, $fromname, $fromemail, $indirect)
     {
         $this->emailboundary = uniqid(time());
-        $this->to            = $this->validateEmail($toemail);
+        if ($indirect !== "") {
+            $this->emailheader  .= "X-Resend-To: ".$toemail.PHP_EOL;
+            $this->to            = $this->validateEmail($indirect);
+        } else  {
+            $this->to            = $this->validateEmail($toemail);
+        }
         $this->emailheader  .= "From: ".$fromname."<".$fromemail.">".PHP_EOL;
         $this->emailheader  .= "Return-Path: ".$fromemail.PHP_EOL;
     }

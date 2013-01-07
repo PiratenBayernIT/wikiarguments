@@ -74,7 +74,7 @@ function i($value)
 
 function send_mail_from($from, $fromName, $to, $subject, $message)
 {
-    $mail = new HTMLMail($to, $to, $fromName, $from);
+    $mail = new HTMLMail($to, $to, $fromName, $from, "");
     $mail->buildMessage($subject, $message);
     $mail->sendmail();
 }

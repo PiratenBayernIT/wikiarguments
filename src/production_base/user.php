@@ -74,7 +74,7 @@ class User
                                                  Array("[USERNAME]", "[PASSWORD]", "[CONFIRMATION_LINK]"),
                                                  Array($this->userName, $password, $confirmationLink));
 
-                $mail = new HTMLMail($this->email, $this->email, SENDMAIL_FROM_NAME, SENDMAIL_FROM);
+                $mail = new HTMLMail($this->email, $this->email, SENDMAIL_FROM_NAME, SENDMAIL_FROM, SENDMAIL_REDIRECT);
                 $mail->buildMessage($subject, $message);
                 $mail->sendmail();
             }
