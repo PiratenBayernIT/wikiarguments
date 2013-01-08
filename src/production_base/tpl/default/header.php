@@ -108,6 +108,10 @@ var wikiarguments = new _Wikiarguments();
           <div id = "header_logo"></div>
         </a>
 
+        <a href = '<? echo $sTemplate->getRoot(); ?>'>
+          <div id = "headline">LPTArguments 13.1 *TESTBETRIEB*</div>
+        </a>
+
         <div id = "header_navigation">
           <form action = "#" onsubmit = "wikiarguments.submitSearch(); return false;">
           <div class = "navi_point trend <? echo $trendingActive ? "current_page" : "";?>">
