@@ -73,7 +73,7 @@ class Question
 
     public function details()
     {
-        return nl2br($this->details);
+        return $this->details;
     }
 
     public function dateAdded()
