@@ -66,16 +66,6 @@ if(count($sPage->getTags()) > 0)
 }
 ?>
 
-<? if(!$sUser->isLoggedIn()) { ?>
-<a href = '<? echo $sTemplate->getRoot(); ?>new-question/' onclick = "wikiarguments.raiseError('<? echo $sTemplate->getString("ERROR_NOT_LOGGED_IN") ?>'); return false;">
-  <button class = 'button_orange button_new_question'><? echo $sTemplate->getString("NEW_QUESTION"); ?></button>
-</a>
-<? }else { ?>
-<a href = '<? echo $sTemplate->getRoot(); ?>new-question/'>
-  <div class = 'button_orange button_new_question'><? echo $sTemplate->getString("NEW_QUESTION"); ?></div>
-</a>
-<? } ?>
-
 <?
 if(count($sPage->getTags()) > 0)
 {
