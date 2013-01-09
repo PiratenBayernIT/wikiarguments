@@ -143,7 +143,6 @@ var wikiarguments = new _Wikiarguments();
 
           <div class = "hidden profile_menu">
             <ul class="user_profile_list">
-                <li><div class = "icon_new_question"></div><a href = '<? echo $sTemplate->getRoot(); ?>new-question/'><? echo $sTemplate->getString("HEADER_NAVI_NEW_QUESTION"); ?></a></li>
                 <li><div class = "icon_manage_profile"></div><a href = '<? echo $sTemplate->getRoot(); ?>manage-profile/'><? echo $sTemplate->getString("HEADER_NAVI_MANAGE_PROFILE"); ?></a></li>
                 <li><div class = "icon_my_profile"></div><a href = '<? echo $sTemplate->getRoot(); ?>user/<? echo $sUser->getUserId(); ?>/'><? echo $sTemplate->getString("HEADER_NAVI_MY_PROFILE"); ?></a></li>
                 <li><div class = "icon_logout"></div><a href = '<? echo $sTemplate->getRoot(); ?>logout/'><? echo $sTemplate->getString("HEADER_NAVI_LOGOUT"); ?></a></li>
