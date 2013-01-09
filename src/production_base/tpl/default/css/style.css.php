@@ -1585,7 +1585,6 @@ cursor: pointer;
 .header_signup a {
    font-size: 28px;
    font-weight: bold;
-   text-decoration: line-through;
 }
 
 .header_menu {
