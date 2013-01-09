@@ -423,7 +423,7 @@ function drawQuestionDistribution(Question $q)
   <form action = '".$q->url()."' method = 'POST' id = 'faction_checkin_pro' onsubmit = '".$onSubmit."'>
     <input type = 'hidden' name = 'faction' value = '".FACTION_PRO."' />
     <input type = 'hidden' name = 'faction_select' value = '1' />
-    <button class = 'checkin_pro' >"."Abstimmen (Check in)"."</button>
+    <button class = 'checkin_pro' >"."Abstimmen"."</button>
   </form>";
     }else
     {
@@ -454,7 +454,7 @@ function drawQuestionDistribution(Question $q)
   <form action = '".$q->url()."' method = 'POST' id = 'faction_checkin_con' onsubmit = '".$onSubmit."'>
     <input type = 'hidden' name = 'faction' value = '".FACTION_CON."' />
     <input type = 'hidden' name = 'faction_select' value = '1' />
-    <button class = 'checkin_con' >"."Abstimmen (Check in)"."</button>
+    <button class = 'checkin_con' >"."Abstimmen"."</button>
   </form>";
     }else
     {
