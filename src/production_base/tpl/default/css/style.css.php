@@ -88,7 +88,7 @@ a {
   -webkit-box-shadow: 3px 0 6px 3px #DDDDDD;
   -o-box-shadow: 3px 0 6px 3px #DDDDDD;
   position: relative;
-  height: 130px;
+  height: 116px;
   width: 100%;
 }
 
@@ -101,14 +101,19 @@ a {
 
 #header_top {
   background-color: #FF8800;
-  background-image: -moz-linear-gradient(center top, #FF8800 0%, #FFE1BF 100% );
-  height: 64px;
+  background: -moz-linear-gradient(center top, #FF8800 0%, #FFE1BF 100% );
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF8800), color-stop(100%,#FFE1BF));
+  background: -webkit-linear-gradient(top,  #FF8800 0%,#FFE1BF 100%);
+  background: -o-linear-gradient(top,  #FF8800 0%,#FFE1BF 100%);
+  background: -ms-linear-gradient(top,  #FF8800 0%,#FFE1BF 100%);
+  background: linear-gradient(top, #FF8800 0%,#FFE1BF 100%);
+  height: 60px;
   width: 100%;
 }
 
 #header_white {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_navigation_background.png');
-  height: 76px;
+  height: 56px;
   width: 100%;
   background-repeat: repeat-x;
   position: relative;
@@ -124,19 +129,27 @@ a {
 }
 
 #header_logo {
-  background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_logo.png');
-  height: 18px;
-  width: 226px;
-  position: relative;
-  left: 30px;
-  top: 20px;
+  background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_logo_piraten.png');
+  height: 48px;
+  width: 143px;
+  position: absolute;
+  left: 50px;
+  top: 7px;
+}
+
+#headline {
+  font-size: 30px;
+  position: absolute;
+  left: 25%;
+  top: 14px;
+  font-weight: bold;
 }
 
 #header_navigation {
   width: 980px;
   position: relative;
   left: 105px;
-  top: 60px;
+  top: 73px;
 }
 
 #wrapper {
@@ -147,7 +160,7 @@ a {
 
 .navi_point {
    float:left;
-  height: 61px;
+  height: 52px;
   margin-right: 49px;
   padding-left:20px;
   padding-right:20px;
@@ -187,7 +200,7 @@ width:45px;
   left: 50%;
   margin-left: -475px;
   padding-bottom:180px;
-  padding-top: 15px;
+  padding-top: 8px;
 }
 
 #content_wide {
@@ -316,9 +329,9 @@ background: linear-gradient(to bottom,  #FF8800 0%,#FFE1BF 100%);
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
-  padding-bottom:25px;
+  padding-bottom:14px;
   background: #FFFFFF;
-  margin-top: 20px;
+  margin-top: 8px;
   position: relative;
   clear:both;
   top:-1px;
