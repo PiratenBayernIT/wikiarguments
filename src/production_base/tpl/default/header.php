@@ -108,7 +108,7 @@ var wikiarguments = new _Wikiarguments();
         </a>
 
         <a href = '<? echo $sTemplate->getRoot(); ?>'>
-          <div id = "headline">LPTArguments 13.1 *TESTBETRIEB*</div>
+          <div id = "headline">LPTArguments 13.1</div>
         </a>
         <div id = "header_navigation">
           <form action = "#" onsubmit = "wikiarguments.submitSearch(); return false;">
