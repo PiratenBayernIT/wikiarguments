@@ -132,11 +132,7 @@ a {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_logo_piraten.png');
   height: 48px;
   width: 143px;
-<<<<<<< HEAD
-  position: relative;
-=======
   position: absolute;
->>>>>>> master
   left: 50px;
   top: 7px;
 }
@@ -245,12 +241,12 @@ width:45px;
   clear:both;
 
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzMzODFjZCIgc3RvcC1vcGFjaXR5PSIwLjkiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzMyNzViNyIgc3RvcC1vcGFjaXR5PSIwLjkiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
-background: -moz-linear-gradient(bottom, #FF8800 0%, #FFE1BF 100% );
+background: -moz-linear-gradient(center bottom, #FF8800 0%, #FFE1BF 100% );
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF8800), color-stop(100%,#FFE1BF));
-background: -webkit-linear-gradient(bottom,  #FF8800 0%,#FFE1BF 100%);
-background: -o-linear-gradient(bottom, #FF8800 0%,#FFE1BF 100%);
-background: -ms-linear-gradient(bottom, #FF8800 0%,#FFE1BF 100%);
-background: linear-gradient( bottom, #FF8800 0%,#FFE1BF 100%);
+background: -webkit-linear-gradient(top,  #FF8800 0%,#FFE1BF 100%);
+background: -o-linear-gradient(top,  #FF8800 0%,#FFE1BF 100%);
+background: -ms-linear-gradient(top,  #FF8800 0%,#FFE1BF 100%);
+background: linear-gradient(to bottom,  #FF8800 0%,#FFE1BF 100%);
 }
 
 #footer_content {
@@ -1580,15 +1576,15 @@ cursor: pointer;
   width: 175px;
   height: 20px;
   top: 15px;
-  right: 10px;
+  right: 0px;
   color: #87cbff;
   font-size: 16px;
   position: absolute;
+
 }
 
 .header_signup a {
-   font-size: 30px;
-  text-decoration: line-through;
+   font-size: 22px;
 }
 
 .header_menu {

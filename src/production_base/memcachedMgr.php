@@ -54,8 +54,8 @@ class MemcachedMgr
     */
     public function init()
     {
-        $this->link_session = new Memcache();
-        $this->link_data    = new Memcache();
+        $this->link_session = new Memcached();
+        $this->link_data    = new Memcached();
 
         foreach(getMemcachedHosts() as $key => $val)
         {
