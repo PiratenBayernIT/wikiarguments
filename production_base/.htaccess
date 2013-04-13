@@ -1,0 +1,53 @@
+RewriteEngine on
+
+RewriteRule ^imprint/$ index.php?pageTitle=imprint [L]
+RewriteRule ^controlpanel/$ index.php?pageTitle=controlPanel [L]
+
+RewriteRule ^tags/trending/$ index.php?pageTitle=default&page=0&sort=0 [L]
+RewriteRule ^tags/trending/([0-9]+)/$ index.php?pageTitle=default&page=$1&sort=0 [L]
+RewriteRule ^tags/trending/([^/\.]+)/$ index.php?pageTitle=default&tags=$1&page=0&sort=0 [L]
+RewriteRule ^tags/trending/([^/\.]+)/([0-9]+)/$ index.php?pageTitle=default&tags=$1&page=$2&sort=0 [L]
+
+RewriteRule ^tags/top/$ index.php?pageTitle=default&page=0&sort=1 [L]
+RewriteRule ^tags/top/([0-9]+)/$ index.php?pageTitle=default&page=$1&sort=1 [L]
+RewriteRule ^tags/top/([^/\.]+)/$ index.php?pageTitle=default&tags=$1&page=0&sort=1 [L]
+RewriteRule ^tags/top/([^/\.]+)/([0-9]+)/$ index.php?pageTitle=default&tags=$1&page=$2&sort=1 [L]
+
+RewriteRule ^tags/newest/$ index.php?pageTitle=default&page=0&sort=2 [L]
+RewriteRule ^tags/newest/([0-9]+)/$ index.php?pageTitle=default&page=$1&sort=2 [L]
+RewriteRule ^tags/newest/([^/\.]+)/$ index.php?pageTitle=default&tags=$1&page=0&sort=2 [L]
+RewriteRule ^tags/newest/([^/\.]+)/([0-9]+)/$ index.php?pageTitle=default&tags=$1&page=$2&sort=2 [L]
+
+RewriteRule ^new-question/$ index.php?pageTitle=new_question [L]
+
+RewriteRule ^signup/$ index.php?pageTitle=signup [L]
+
+RewriteRule ^settings/$ index.php?pageTitle=manage_profile [L]
+
+RewriteRule ^user/([0-9]+)/$ index.php?pageTitle=profile&userId=$1 [L]
+
+RewriteRule ^sponsors/$ index.php?pageTitle=sponsors [L]
+
+RewriteRule ^become-sponsor/$ index.php?pageTitle=new_sponsor [L]
+
+RewriteRule ^become-sponsor/$ index.php?pageTitle=new_sponsor [L]
+
+RewriteRule ^sponsors/([0-9]+).png$ uploads/sponsors/l_$1.png [L]
+
+RewriteRule ^([^/\.]+)/$ index.php?pageTitle=question&title=$1&view=0 [L]
+RewriteRule ^([^/\.]+)/details/$ index.php?pageTitle=question&title=$1&view=1 [L]
+
+RewriteRule ^([^/\.]+)/p/new-argument/$ index.php?pageTitle=new_argument&title=$1&faction=0 [L]
+RewriteRule ^([^/\.]+)/c/new-argument/$ index.php?pageTitle=new_argument&title=$1&faction=1 [L]
+
+RewriteRule ^([^/\.]+)/p/([^/\.]+)/ca/new-argument/$ index.php?pageTitle=new_counter_argument&title=$1&argument=$2&faction=0 [L]
+RewriteRule ^([^/\.]+)/c/([^/\.]+)/ca/new-argument/$ index.php?pageTitle=new_counter_argument&title=$1&argument=$2&faction=1 [L]
+
+RewriteRule ^([^/\.]+)/p/([^/\.]+)/$ index.php?pageTitle=argument&title=$1&argument=$2 [L]
+RewriteRule ^([^/\.]+)/c/([^/\.]+)/$ index.php?pageTitle=argument&title=$1&argument=$2 [L]
+
+RewriteRule ^([^/\.]+)/p/([^/\.]+)/ca/$ index.php?pageTitle=counter_argument&title=$1&argument=$2&faction=0 [L]
+RewriteRule ^([^/\.]+)/c/([^/\.]+)/ca/$ index.php?pageTitle=counter_argument&title=$1&argument=$2&faction=1 [L]
+
+RewriteRule ^([^/\.]+)/p/([^/\.]+)/ca/([^/\.]+)/$ index.php?pageTitle=counter_argument_full&title=$1&argument=$2&counterArgument=$3&faction=0 [L]
+RewriteRule ^([^/\.]+)/c/([^/\.]+)/ca/([^/\.]+)/$ index.php?pageTitle=counter_argument_full&title=$1&argument=$2&counterArgument=$3&faction=1 [L]

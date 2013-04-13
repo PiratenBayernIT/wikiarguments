@@ -1,0 +1,25 @@
+* import sql database from /sql.
+* modify /src/production_base/etc/config.php.
+* use /src/production_base as code base.
+
+***
+* if you want to use the url shortener, use /src/shortener_base as code base.
+
+
+*** Dependencies ***
+* Lighttpd with mod_rewrite or Apache2 with mod_rewrite.
+* php >=5.2
+* mysql
+* memcached
+* php-memcache
+* php-imap
+
+*** Installation details or Lighttpd ***
+* If you use lighttpd, use /lighttpd/rewrite_global.conf for mod_rewrite, i.e. add
+include "<path_to_wikiarguments>/lighttpd/rewrite_global.conf"
+to your lighttpd config.
+
+*** Installation details for Apache2 ***
+* The .htaccess file is currently only experimental and may require some modifications.
+* If you use apache2, use /apache2/.htaccess for mod_rewrite,
+i.e. copy it to your production_base folder.
