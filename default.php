@@ -65,24 +65,6 @@ if(count($sPage->getTags()) > 0)
 }
 ?>
 
-<? if(!$sUser->isLoggedIn()) { ?>
-<a href = '<? echo $sTemplate->getRoot(); ?>new-question/' onclick = "wikiargument.raiseError('<? echo $sTemplate->getString("ERROR_NOT_LOGGED_IN") ?>'); return false;">
-  <button class = 'button_orange button_new_question'><? echo $sTemplate->getString("NEW_QUESTION"); ?></button>
-</a>
-<? }else if($sPage->group() && $sPage->group()->getPermission($sUser, ACTION_NEW_QUESTION) == PERMISSION_DISALLOWED) { ?>
-<a href = '<? echo $sTemplate->getRoot(); ?>new-question/' onclick = "wikiargument.raiseError('<? echo $sTemplate->getString("NOTICE_NEW_QUESTION_NO_PERMISSION") ?>'); return false;">
-  <button class = 'button_orange button_new_question'><? echo $sTemplate->getString("NEW_QUESTION"); ?></button>
-</a>
-<? }else if($sPage->group()) { ?>
-<a href = '<? echo $sTemplate->getRoot(); ?>groups/<? echo $sPage->group()->url(); ?>/new-question/'>
-  <div class = 'button_orange button_new_question'><? echo $sTemplate->getString("NEW_QUESTION"); ?></div>
-</a>
-<? }else { ?>
-<a href = '<? echo $sTemplate->getRoot(); ?>new-question/'>
-  <div class = 'button_orange button_new_question'><? echo $sTemplate->getString("NEW_QUESTION"); ?></div>
-</a>
-<? } ?>
-
 <?
 if(count($sPage->getTags()) > 0)
 {
