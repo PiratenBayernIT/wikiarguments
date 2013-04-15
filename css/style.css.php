@@ -120,7 +120,7 @@ a {
 #header_logo {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_logo.png');
   height: 18px;
-  width: 226px;
+  width: 275px;
   position: relative;
   left: 30px;
   top: 20px;
@@ -287,7 +287,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e63381cd', e
 #footer_logo {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_logo.png');
   height: 18px;
-  width: 226px;
+  width: 275px;
   position: relative;
   top: 42px;
 }
