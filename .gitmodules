@@ -1,0 +1,3 @@
+[submodule "production_base/tpl/default"]
+	path = production_base/tpl/default
+	url = ssh://github/PiratenBayernIT/wikiarguments-theme-default
