@@ -107,7 +107,8 @@ class Question
 
     public function details()
     {
-        return nl2br(htmlspecialchars($this->details));
+        //return nl2br(htmlspecialchars($this->details));
+        return $this->details;
     }
 
     public function dateAdded()
