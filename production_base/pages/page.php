@@ -109,6 +109,10 @@ class Page
 
     public function shortUrl()
     {
+        if(!SHORTURL_BASE)
+        {
+            return "";
+        }
         return $this->shortUrl;
     }
 
