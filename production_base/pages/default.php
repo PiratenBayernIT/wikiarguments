@@ -189,11 +189,11 @@ class PageDefault extends Page
         {
             case SORT_TRENDING:
             {
-                $qry .= " ORDER BY `scoreTrending` DESC";
+                $qry .= " ORDER BY `scoreTrending` DESC, `questionId`";
             }break;
             case SORT_TOP:
             {
-                $qry .= " ORDER BY `scoreTop` DESC";
+                $qry .= " ORDER BY `scoreTop` DESC, `questionId`";
             }break;
             case SORT_NEWEST:
             {
