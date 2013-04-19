@@ -2166,6 +2166,8 @@ float:right;
 list-style:none;
 margin:3px;
 display: inline-block;
+color: #87cbff;
+vertical-align: middle;
 }
 #footer_socials ul li a{
 

@@ -78,8 +78,8 @@ wikiargument.raiseNotice("<? echo $notice; ?>");
         </div>
         <div id="footer_socials">
             <ul>
-                <li><a class="footer_twitter" href=""></a></li>
-                <li><a class="footer_facebook" href=""></a></li>
+                <li>BPTArguments auf Twitter:</li>
+                <li><a class="footer_twitter" href="http://twitter.com/BPTArguments"></a></li>
             </ul>
         </div>
     </div>
