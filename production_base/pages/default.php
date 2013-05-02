@@ -153,15 +153,27 @@ class PageDefault extends Page
 
         if(count($this->tags))
         {
+            $res       = false;
             $idString  = "";
-            $tagString = "";
-            foreach($this->tags as $k => $v)
-            {
-                $tagString .= ", '".mysql_real_escape_string($v)."'";
-            }
-            $tagString = substr($tagString, 2);
 
-            $res = $sDB->exec("SELECT count(*) as `cnt`, `questionId` FROM `tags` WHERE `tag` IN (".$tagString.") AND `groupId` = '".i($this->groupId)."' GROUP BY `questionId`;");
+            if(FULLTEXT_TAGS)
+            {
+                $tagString = "";
+                foreach($this->tags as $k => $v)
+                {
+                    $tagString .= "+".mysql_real_escape_string($v)."* ";
+                }
+                $res = $sDB->exec("SELECT count(*) as `cnt`, `questionId` FROM `tags` WHERE MATCH(`tag`) AGAINST ('".$tagString."' IN BOOLEAN MODE) AND `groupId` = '".i($this->groupId)."' GROUP BY `questionId`;");
+            }else
+            {
+                $tagString = "";
+                foreach($this->tags as $k => $v)
+                {
+                    $tagString .= ", '".mysql_real_escape_string($v)."'";
+                }
+                $tagString = substr($tagString, 2);
+                $res       = $sDB->exec("SELECT count(*) as `cnt`, `questionId` FROM `tags` WHERE `tag` IN (".$tagString.") AND `groupId` = '".i($this->groupId)."' GROUP BY `questionId`;");
+            }
             while($row = mysql_fetch_object($res))
             {
                 if($row->cnt >= $cnt)
