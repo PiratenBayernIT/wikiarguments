@@ -49,5 +49,5 @@ if($token)
 
 $sTimer->stop('tokenRun');
 
-header("Location: /signup/");
+header("Location: ". SITE_ROOT ."signup/");
 ?>

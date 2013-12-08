@@ -103,6 +103,14 @@ class PageSignup extends Page
         }
     }
 
+    public function checkSessionSignupToken() {
+        global $sSession, $sDB;
+
+        $token = $sSession->getVal("signupToken");
+        $res = $sDB->exec("SELECT * FROM `signup_tokens` WHERE `token` = '".mysql_real_escape_string($token)."' LIMIT 1;");
+        return mysql_num_rows($res) == 1;
+    }
+
     public function handleSignup()
     {
         global $sRequest, $sDB, $sQuery, $sTemplate, $sUser, $sSession;
@@ -144,11 +152,9 @@ class PageSignup extends Page
             }
 
             // check for valid token if required
-            $token = $sSession->getVal("signupToken");
             if(SIGNUP_REQUIRE_TOKEN)
             {
-                $res = $sDB->exec("SELECT * FROM `signup_tokens` WHERE `token` = '".mysql_real_escape_string($token)."' LIMIT 1;");
-                if(mysql_num_rows($res) == 0)
+                if(!$this->checkSessionSignupToken())
                 {
                     $this->setError($sTemplate->getString("SIGNUP_REQUIRE_TOKEN"));
                     return false;
