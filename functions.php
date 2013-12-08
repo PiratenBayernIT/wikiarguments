@@ -182,6 +182,7 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
 
     if($appendTags)
     {
+        $sorting = $sPage->getSort() == SORT_TOP ? "top/" : "title/";
         $tags = $q->tags();
         foreach($tags as $k => $v)
         {
@@ -190,7 +191,7 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
                 $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'groups/'.$sPage->group()->url().'/tags/title/'.$v.'/">'.$v.'</a></li>';
             }else
             {
-                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/title/'.$v.'/">'.$v.'</a></li>';
+                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/'.$sorting.$v.'/">'.$v.'</a></li>';
             }
         }
     }
