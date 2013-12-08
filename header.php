@@ -123,7 +123,7 @@ var wikiargument = new _Wikiargument('', '<? echo $sUser->getUserId(); ?>');
   <div id = "wrapper">
     <div id = "header">
 
-      <div id = "header_blue"></div>
+      <div id = "header_orange"></div>
       <div id = "header_white"></div>
 
       <div id = "header_content">
@@ -135,6 +135,7 @@ var wikiargument = new _Wikiargument('', '<? echo $sUser->getUserId(); ?>');
         <a href = '<? echo $sTemplate->getRoot(); ?>'>
           <div id = "header_logo"></div>
         </a>
+        <a href="http://bptarguments.piratenpartei.de" class="header-text">BPT 13.2 Bremen</a>
 <?
    }
 

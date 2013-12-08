@@ -100,6 +100,19 @@ a {
   background-repeat: repeat-x;
 }
 
+#header_orange {
+  height: 54px;
+  width: 100%;
+background: #ff8800; /* Old browsers */
+background: -moz-linear-gradient(top, #ff8800 0%, #ffc880 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff8800), color-stop(100%,#ffc880)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #ff8800 0%,#ffc880 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #ff8800 0%,#ffc880 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #ff8800 0%,#ffc880 100%); /* IE10+ */
+background: linear-gradient(to bottom, #ff8800 0%,#ffc880 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8800', endColorstr='#ffc880',GradientType=0 ); /* IE6-9 */
+}
+
 #header_white {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/header_navigation_background.png');
   height: 76px;
@@ -696,6 +709,13 @@ padding-right:18px;
   font-family: "Cantata One", Tahome;
 }
 
+.header-text {
+    position: absolute;
+    left: 25%;
+    top: 16px;
+    font-family: "Cantata One", Tahome;
+    font-size:22px;
+}
 
 .icon_twitter {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/icon_twitter.png') no-repeat;
@@ -1699,9 +1719,7 @@ cursor: pointer;
 }
 
 .header_signup a {
-   color: #7EC2F7;
-   text-shadow: 0 -1px #011A2D;
-   font-size: 18px;
+   font-size: 22px;
 }
 
 .header_menu {
@@ -1717,7 +1735,7 @@ cursor: pointer;
 }
 
 .header_menu .username {
-  color: #87cbff;
+  color: #004C83;
   height: 34px;
   width: 150px;
   padding-top: 10px;
