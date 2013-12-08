@@ -32,9 +32,9 @@
  * thereof with code not governed by the terms of the CPAL.
  *******************************************************************************/
 
-define("SORT_TRENDING",                 0);
+define("SORT_TITLE",                   0);
 define("SORT_TOP",                      1);
-define("SORT_NEWEST",                   2);
+define("OVERVIEW",                      2);
 
 define("VIEW_DISCUSSION",               0);
 define("VIEW_DETAILS",                  1);

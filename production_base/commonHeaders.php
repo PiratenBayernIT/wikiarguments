@@ -82,6 +82,7 @@ include("./pages/editCounterArgument.php");
 include("./pages/sponsors.php");
 include("./pages/newSponsor.php");
 include("./pages/faq.php");
+include("./pages/overview.php");
 
 mt_srand(time());
 

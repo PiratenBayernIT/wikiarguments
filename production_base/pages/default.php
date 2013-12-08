@@ -42,7 +42,7 @@ class PageDefault extends Page
         $this->page     = $sRequest->getInt("page");
         $this->numPages = -1;
         $this->tags     = Array();
-        $this->sort     = SORT_TRENDING;
+        $this->sort     = SORT_TITLE;
 
         if($this->group && $this->group->groupId() && $this->group->getPermission($sUser, ACTION_VIEW_GROUP) == PERMISSION_DISALLOWED)
         {
@@ -50,7 +50,7 @@ class PageDefault extends Page
             exit;
         }
 
-        if(in_array($sRequest->getInt("sort"), Array(SORT_TRENDING, SORT_TOP, SORT_NEWEST)))
+        if(in_array($sRequest->getInt("sort"), Array(SORT_TITLE, SORT_TOP, OVERVIEW)))
         {
             $this->sort = $sRequest->getInt("sort");
         }
@@ -98,17 +98,13 @@ class PageDefault extends Page
 
         switch($this->sort)
         {
-            case SORT_TRENDING:
+            case SORT_TITLE:
             {
-                return $sTemplate->getString("HTML_META_TITLE_TRENDING", Array("[TAGS]"), Array($tagString));
+                return $sTemplate->getString("HTML_META_TITLE_TITLE", Array("[TAGS]"), Array($tagString));
             }break;
             case SORT_TOP:
             {
                 return $sTemplate->getString("HTML_META_TITLE_TOP", Array("[TAGS]"), Array($tagString));
-            }break;
-            case SORT_NEWEST:
-            {
-                return $sTemplate->getString("HTML_META_TITLE_NEWEST", Array("[TAGS]"), Array($tagString));
             }break;
         }
 
@@ -199,17 +195,13 @@ class PageDefault extends Page
 
         switch($this->sort)
         {
-            case SORT_TRENDING:
+            case SORT_TITLE:
             {
-                $qry .= " ORDER BY `scoreTrending` DESC, `questionId`";
+                $qry .= " ORDER BY `title`";
             }break;
             case SORT_TOP:
             {
                 $qry .= " ORDER BY `scoreTop` DESC, `questionId`";
-            }break;
-            case SORT_NEWEST:
-            {
-                $qry .= " ORDER BY `dateAdded` DESC";
             }break;
         }
 
@@ -254,11 +246,8 @@ class PageDefault extends Page
     {
         global $sTemplate;
 
-        $path = $sTemplate->getRoot()."tags/trending/";
-        if($this->sort == SORT_NEWEST)
-        {
-            $path = $sTemplate->getRoot()."tags/newest/";
-        }else if($this->sort == SORT_TOP)
+        $path = $sTemplate->getRoot()."tags/title/";
+        if($this->sort == SORT_TOP)
         {
             $path = $sTemplate->getRoot()."tags/top/";
         }
@@ -294,18 +283,18 @@ class PageDefault extends Page
 
         if($this->groupId())
         {
-            if($this->sort == SORT_NEWEST)
+            if($this->sort == SORT_TITLE)
             {
-                return $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/newest/";
+                return $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/title/";
             }else if($this->sort == SORT_TOP)
             {
                 return $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/top/";
             }
         }
 
-        if($this->sort == SORT_NEWEST)
+        if($this->sort == SORT_TITLE)
         {
-            return $sTemplate->getRoot()."tags/newest/";
+            return $sTemplate->getRoot()."tags/title/";
         }else if($this->sort == SORT_TOP)
         {
             return $sTemplate->getRoot()."tags/top/";
