@@ -48,26 +48,24 @@ foreach($tags as $k => $v)
 if(strlen($filterString))
 {
     $filterString = substr($filterString, 1)."/";
-    $filterStringTrending = "tags/trending/".$filterString;
+    $filterStringTop = "tags/top/".$filterString;
 }else
 {
-    $filterStringTrending = "";
+    $filterStringTop = "";
 }
 
 $filterStringTop      = "tags/top/".$filterString;
-$filterStringNewest   = "tags/newest/".$filterString;
+$filterStringTitle   = "tags/title/".$filterString;
 
-$trendingActive = false;
 $topActive      = false;
-$newestActive   = false;
+$titleActive   = false;
 
 if($sTemplate->isCurrentPage('default') || $sTemplate->isCurrentPage("group"))
 {
     $sort = $sPage->getSort();
 
-    $trendingActive = $sort == SORT_TRENDING;
+    $titleActive   = $sort == SORT_TITLE;
     $topActive      = $sort == SORT_TOP;
-    $newestActive   = $sort == SORT_NEWEST;
 }
 if($sPage->group())
 {
@@ -155,19 +153,19 @@ if($sPage->getQuestion() && $sPage->getQuestion()->type() == QUESTION_TYPE_UNLIS
 ?>
 
         <div id = "header_navigation">
-          <form action = "#" onsubmit = "wikiargument.submitSearch(); return false;">
-          <div class = "navi_point trend <? echo $trendingActive ? "current_page" : "";?>">
-            <a href = '<? echo $sTemplate->getRoot(); ?><? echo $filterStringTrending; ?>'><? echo $sTemplate->getString("NAVIGATION_WHATS_HOT"); ?></a>
+          <div class = "navi_point title <? echo $titleActive ? "current_page" : "";?>">
+            <a href = '<? echo $sTemplate->getRoot(); ?><? echo $filterStringTitle; ?>'><? echo $sTemplate->getString("NAVIGATION_TITLE"); ?></a>
           </div>
 
           <div class = "navi_point top <? echo $topActive ? "current_page" : "";?>">
             <a href = '<? echo $sTemplate->getRoot(); ?><? echo $filterStringTop; ?>'><? echo $sTemplate->getString("NAVIGATION_TOP"); ?></a>
           </div>
 
-          <div class = "navi_point neu <? echo $newestActive ? "current_page" : "";?>">
-            <a href = '<? echo $sTemplate->getRoot(); ?><? echo $filterStringNewest; ?>'><? echo $sTemplate->getString("NAVIGATION_NEWEST"); ?></a>
+          <div class = "navi_point overview">
+            <a href = '<? echo $sTemplate->getRoot(); ?>overview/'><? echo $sTemplate->getString("NAVIGATION_OVERVIEW"); ?></a>
           </div>
 
+          <form action = "#" onsubmit = "wikiargument.submitSearch(); return false;">
           <div class = "navi_point">
               <input type = "text" value = "<? echo $sTemplate->getString("NAVIGATION_SEARCH_DEFAULT"); ?>" id = "navi_search" name = "navi_search"
                      onfocus = "if($('#navi_search').val() == '<? echo $sTemplate->getString("NAVIGATION_SEARCH_DEFAULT"); ?>') {$('#navi_search').val(''); }">

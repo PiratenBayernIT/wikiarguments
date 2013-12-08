@@ -187,10 +187,10 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
         {
             if($sPage->group() && $sPage->group()->url())
             {
-                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'groups/'.$sPage->group()->url().'/tags/trending/'.$v.'/">'.$v.'</a></li>';
+                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'groups/'.$sPage->group()->url().'/tags/title/'.$v.'/">'.$v.'</a></li>';
             }else
             {
-                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/trending/'.$v.'/">'.$v.'</a></li>';
+                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/title/'.$v.'/">'.$v.'</a></li>';
             }
         }
     }

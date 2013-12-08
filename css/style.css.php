@@ -199,10 +199,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8800', end
   min-width:44px;
 
 }
-.navi_point.trend{
+.navi_point.overview{
 width:111px;}
 
-.navi_point.neu{
+.navi_point.title{
 width:45px;
 }
 

@@ -206,13 +206,10 @@ _Wikiargument.prototype.submitSearch = function(sort)
 
     if(sort == <? echo SORT_TOP; ?>)
     {
-        url = root + "tags/trending/" + query + "/";
-    }else if(sort == <? echo SORT_NEWEST; ?>)
-    {
         url = root + "tags/top/" + query + "/";
     }else
     {
-        url = root + "tags/newest/" + query + "/";
+        url = root + "tags/title/" + query + "/";
     }
 
     window.location = url;
