@@ -506,7 +506,7 @@ _Wikiargument.prototype.sendPacket = function(opcode, data, callback)
         "data"   : data
     };
 
-    jQuery.post("/ajax.php",
+    jQuery.post("<? echo SITE_ROOT ?>ajax.php",
                 {"request" : jQuery.toJSON(carrier)},
                 function(response)
                 {
