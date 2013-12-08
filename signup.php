@@ -41,7 +41,6 @@ $language   = $sTemplate->getLangBase();
 
 <div id = "content_wide">
   <div class = "thin">
-
   <div class = "signup">
     <form id = "form_submit" action = "<? echo $sTemplate->getRoot(); ?>signup/" method = "POST">
       <div class = "row">
@@ -76,11 +75,26 @@ $language   = $sTemplate->getLangBase();
       </div>
 
       <div class = "row row_submit">
-        <button class = "button_orange" onclick = "$('#form_submit').submit(); return false;"><? echo $sTemplate->getString("SIGNUP_SUBMIT"); ?></button>
-      </div>
+<? 
+if (SIGNUP_REQUIRE_TOKEN) { 
+    $tokenValid = $sPage->checkSessionSignupToken();
+    if(!$tokenValid) {
+        echo "<span class='token-feedback invalid'>Fehler: Token ist ungültig</span>";
+    } 
+    else { ?> 
+        <button class="button_orange" onclick="$('#form_submit').submit(); return false;"><? echo $sTemplate->getString("SIGNUP_SUBMIT"); ?></button>
+        <span class='token-feedback valid'>Token ist gültig</span>
+<? } 
+} 
 
+else { ?>
+        <button class = "button_orange" onclick = "$('#form_submit').submit(); return false;"><? echo $sTemplate->getString("SIGNUP_SUBMIT"); ?></button>
+<? } 
+?>
+      </div>
       <input type = "hidden" name = "signup" value = "1" />
     </form>
+
   </div>
 
   <div class = "login">
@@ -103,8 +117,8 @@ $language   = $sTemplate->getLangBase();
       </div>
 
       <div class = "row row_submit">
-        <span class = "button_blue" onclick = "wikiargument.passRequest(); return false;"><? echo $sTemplate->getString("LOGIN_FORGOT_PASSWORD"); ?></span>
         <button class = "button_blue" onclick = "$('#form_login').submit();"><? echo $sTemplate->getString("LOGIN_SUBMIT"); ?></button>
+        <span class = "button_blue" onclick = "wikiargument.passRequest(); return false;"><? echo $sTemplate->getString("LOGIN_FORGOT_PASSWORD"); ?></span>
       </div>
 
       <input type = "hidden" name = "login" id = "login_mode_login" value = "1" />
@@ -113,7 +127,6 @@ $language   = $sTemplate->getLangBase();
   </div>
 
   <div class = "clear"></div>
-
   </div>
 
 </div>

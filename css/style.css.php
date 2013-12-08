@@ -1662,20 +1662,18 @@ cursor: pointer;
 
 .signup {
   background: url("<? echo $sTemplate->getTemplateRoot(); ?>img/backgrounds/register_bg.png") no-repeat scroll center 31px transparent;
-    float: left;
+    float: right;
     padding-bottom: 40px;
-    padding-right: 50px;
+    padding-left: 50px;
     width: 400px;
+    border-left-style: dashed;
+    border-width: 1px;
 }
 
 .login {
-  float: right;
+  float: left;
   width: 400px;
   padding-top: 18px;
-}
-
-.login .headline {
-  font-size: 22px;
 }
 
 .signup .label,
@@ -1705,6 +1703,22 @@ cursor: pointer;
     width: 265px;
     font-family:"Imprima", sans-serif;
     font-size: 16px;
+}
+
+.token-feedback {
+    font-size: 30px;
+    margin-left: 30px;
+    font-family:"Cantata One", Tahome;
+    vertical-align: bottom;
+} 
+
+.token-feedback.valid {
+    color: #004a80;
+}
+
+.token-feedback.invalid {
+	color: #FF5300;
+    text-decoration: underline;
 }
 
 .header_signup {
