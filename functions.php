@@ -182,7 +182,10 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
 
     if($appendTags)
     {
-        $sorting = $sPage->getSort() == SORT_TOP ? "top/" : "title/";
+        $sorting = "title/";
+        if (method_exists($sPage, "getSort") && $sPage->getSort() == SORT_TOP) {
+            $sorting = "top/";
+        }
         $tags = $q->tags();
         foreach($tags as $k => $v)
         {

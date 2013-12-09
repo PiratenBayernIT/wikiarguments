@@ -79,7 +79,7 @@ $language   = $sTemplate->getLangBase();
 if (SIGNUP_REQUIRE_TOKEN) { 
     $tokenValid = $sPage->checkSessionSignupToken();
     if(!$tokenValid) {
-        echo "<span class='token-feedback invalid'>Fehler: Token ist ungültig</span>";
+        echo "<span class='token-feedback invalid'>Token ist ungültig / verbraucht</span>";
     } 
     else { ?> 
         <button class="button_orange" onclick="$('#form_submit').submit(); return false;"><? echo $sTemplate->getString("SIGNUP_SUBMIT"); ?></button>
