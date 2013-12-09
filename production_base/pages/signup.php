@@ -165,13 +165,17 @@ class PageSignup extends Page
 
             if($user->create($username, $email, $password))
             {
-                $this->setNotice($sTemplate->getString("SIGNUP_SUCCESS"));
+                $addSuccessText = "";
 
                 if(SIGNUP_REQUIRE_TOKEN)
                 {
-                    $res = $sDB->exec("DELETE FROM `signup_tokens` WHERE `token` = '".mysql_real_escape_string($token)."' LIMIT 1;");
+                    $token = $sSession->getVal("signupToken");
+                    $q = "DELETE FROM `signup_tokens` WHERE `token` = '".mysql_real_escape_string($token)."' LIMIT 1;";
+                    $res = $sDB->exec($q);
                     $sSession->setVal("signupToken", "");
+                    $addSuccessText = "Das Token '" . $token . "' ist jetzt verbraucht.";
                 }
+                $this->setNotice($sTemplate->getString("SIGNUP_SUCCESS") . $addSuccessText);
                 return true;
             }else
             {

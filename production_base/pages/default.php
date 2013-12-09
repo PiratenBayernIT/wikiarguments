@@ -252,18 +252,6 @@ class PageDefault extends Page
             $path = $sTemplate->getRoot()."tags/top/";
         }
 
-        if($this->groupId())
-        {
-            $path = $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/trending/";
-            if($this->sort == SORT_NEWEST)
-            {
-                $path = $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/newest/";
-            }else if($this->sort == SORT_TOP)
-            {
-                $path = $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/top/";
-            }
-        }
-
         if($this->tags)
         {
             foreach($this->tags as $k => $v)
