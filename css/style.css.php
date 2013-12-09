@@ -407,7 +407,7 @@ color:#87cbff;
   -moz-border-radius: 20px;
   padding-bottom:25px;
   background: #FFFFFF;
-  margin-top: 20px;
+  margin-top: 10px;
   position: relative;
   clear:both;
   top:-1px;
@@ -2541,7 +2541,7 @@ h2 {
 
 font-size:22px;
 font-weight:normal;
-margin-top:0;
+/* margin-top:0; */
 }
 
 small {

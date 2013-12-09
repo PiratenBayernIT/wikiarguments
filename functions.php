@@ -172,10 +172,10 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
 
     if($q->canEdit($sUser))
     {
-        $ret .= '<div class = "author question_author"><a href = "'.$q->url().'edit/">'.$sTemplate->getString("QUESTION_EDIT", Array("[TIMELEFT]"), Array($q->timeLeftEdit())).'</a></div>';
+        $ret .= '<div class = "author question_author" style="display:none"><a href = "'.$q->url().'edit/">'.$sTemplate->getString("QUESTION_EDIT", Array("[TIMELEFT]"), Array($q->timeLeftEdit())).'</a></div>';
     }else
     {
-        $ret .= '<div class = "author question_author">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($q->timeSince(), $q->authorLink())).'</div>';
+        $ret .= '<div class = "author question_author" style="display:none">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($q->timeSince(), $q->authorLink())).'</div>';
     }
 
     $ret .= '<div class = "tags"><ul>';
