@@ -405,7 +405,7 @@ color:#87cbff;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
-  padding-bottom:25px;
+  padding-bottom:12px;
   background: #FFFFFF;
   margin-top: 10px;
   position: relative;
