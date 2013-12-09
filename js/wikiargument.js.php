@@ -356,7 +356,7 @@ _Wikiargument.prototype.handleFollowResponse = function(resp)
     {
         $("#tab_follow_question").hide();
         $("#tab_unfollow_question").show();
-        this.raiseNotice(this.getString("NOTICE_FOLLOW_SUCCESS"));
+        // this.raiseNotice(this.getString("NOTICE_FOLLOW_SUCCESS"));
     }else
     {
     }
@@ -386,7 +386,7 @@ _Wikiargument.prototype.handleUnfollowResponse = function(resp)
     {
         $("#tab_unfollow_question").hide();
         $("#tab_follow_question").show();
-        this.raiseNotice(this.getString("NOTICE_UNFOLLOW_SUCCESS"));
+        // this.raiseNotice(this.getString("NOTICE_UNFOLLOW_SUCCESS"));
     }else
     {
     }
