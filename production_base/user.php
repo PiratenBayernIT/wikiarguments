@@ -239,10 +239,9 @@ class User
             }
 
             // check if a vote state exists in the user's cookie
-            $cookieData = $_COOKIE['voteData'];
-            if($cookieData)
+            if(isset($_COOKIE['voteData']))
             {
-                $cookieData = unserialize($cookieData);
+                $cookieData = unserialize($_COOKIE['voteData']);
                 if(is_array($cookieData) && is_array($cookieData[$questionId]))
                 {
                     foreach($cookieData[$questionId] as $k => $v)
