@@ -198,6 +198,10 @@ class User
     {
         global $sDB, $sStatistics;
 
+        if(!VOTE_FACTIONS)
+        {
+            return;
+        }
         validateFaction($faction);
 
         if($this->getFactionByQuestionId($questionId) == $faction)

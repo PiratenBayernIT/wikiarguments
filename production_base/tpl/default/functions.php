@@ -47,7 +47,7 @@ function voteUp($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
         $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN")."\"); return false;";
     }
 
-    if($argumentId && $canVote)
+    if($argumentId && $canVote && CONSTRAIN_FACTIONS)
     {
         $faction = $sUser->getFactionByQuestionId($questionId);
 
@@ -98,7 +98,7 @@ function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
         $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN")."\"); return false;";
     }
 
-    if($argumentId && $canVote)
+    if($argumentId && $canVote && CONSTRAIN_FACTIONS)
     {
         $faction = $sUser->getFactionByQuestionId($questionId);
 
@@ -111,9 +111,18 @@ function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
 
     $ret = "";
 
-    if($vote != VOTE_DN)
-    {
-        $css .= " vote_dn_inactive";
+    if (DOWNVOTE_QUESTIONS) {
+        if($vote != VOTE_DN)
+        {
+            $css .= " vote_dn_inactive";
+        }
+        $newvalue = $vote == VOTE_DN ? VOTE_NONE : VOTE_DN;
+    } else {
+        if($vote != VOTE_NONE)
+        {
+            $css .= " vote_dn_inactive";
+        }
+        $newvalue = $vote == VOTE_DN ? VOTE_NONE : VOTE_DN;
     }
 
     $onClick = "$('#".$id."').submit();";
@@ -125,8 +134,8 @@ function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
     }
 
     $ret = "<form action = '' method = 'POST' id = '".$id."' onsubmit = '".$onSubmit."'>";
-    $ret .= "<div class = 'vote_dn ".$css."' id = 'vote_dn_".$questionId."_".$argumentId."' onclick = \"".$onClick."\"></div>";
-    $ret .= "<input type = 'hidden' name = 'vote' value = '".($vote == VOTE_DN ? VOTE_NONE : VOTE_DN)."' />";
+    $ret .= "<div class = 'vote_dn ".$css."' onclick = \"$('#".$id."').submit();\"></div>";
+    $ret .= "<input type = 'hidden' name = 'vote' value = '".$newvalue."' />";
     $ret .= "<input type = 'hidden' name = 'questionId' value = '".$questionId."' />";
     $ret .= "<input type = 'hidden' name = 'argumentId' value = '".$argumentId."' />";
     $ret .= "<input type = 'hidden' name = 'vote_select' value = '1' />";

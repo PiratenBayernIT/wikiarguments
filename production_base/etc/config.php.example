@@ -87,7 +87,6 @@ define("PHPSPELLCHECK_ROOT",                SITE_ROOT."spellcheck/");
 define("VOTES_AJAX",                        true);
 
 define("QUESTIONS_PER_PAGE",                10);
-define("SPONSORS_PER_PAGE",                 11);
 
 define("MAX_ARGUMENT_ABS_CHR_LENGTH",       140);
 define("MAX_QUESTION_CHR_LENGTH",           100);
@@ -95,6 +94,11 @@ define("MAX_ARGUMENT_HEADLINE_CHR_LENGTH",  25);
 define("MAX_TAGS_CHR_LENGTH",               45);
 define("MAX_GROUP_NAME_CHR_LENGTH",         30);
 define("USERNAME_MAX_LEN",                  20);
+
+define("FULLTEXT_TAGS",                     false);
+define("DOWNVOTE_QUESTIONS",                true);
+define("VOTE_FACTIONS",                     true);
+define("CONSTRAIN_FACTIONS",                true);
 
 define("DEBUG_TIMING_SLOW_QUERY_TIME",      1000);
 define("SESSION_SYNC_INTERVAL",             0);

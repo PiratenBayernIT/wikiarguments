@@ -79,7 +79,7 @@ class PageQuestion extends Page
             $this->setShortUrl($this->question->shortUrl());
         }
 
-        if($sRequest->getInt("faction_select") &&
+        if($sRequest->getInt("faction_select") && VOTE_FACTIONS &&
            ($sUser->isLoggedIn() || $this->question->hasFlag(QUESTION_FLAG_PART_ALL)))
         {
             if($this->question->group() && $this->question->group()->getPermission($sUser, ACTION_VOTE) == PERMISSION_DISALLOWED)

@@ -82,25 +82,27 @@ class StatisticsMgr
         }
         $q = mysql_fetch_object($res);
 
-        $sTimer->start("updateQuestionStats::factionData");
+        if (VOTE_FACTIONS) {
+            $sTimer->start("updateQuestionStats::factionData");
 
-        $num = Array(FACTION_PRO => 0, FACTION_CON => 0);
-        $res = $sDB->exec("SELECT COUNT(*) as `cnt`, `state` FROM `user_factions` WHERE `questionId` = '".i($questionId)."' GROUP BY `state`");
-        while($row = mysql_fetch_object($res))
-        {
-            $num[$row->state] = $row->cnt;
+            $num = Array(FACTION_PRO => 0, FACTION_CON => 0);
+            $res = $sDB->exec("SELECT COUNT(*) as `cnt`, `state` FROM `user_factions` WHERE `questionId` = '".i($questionId)."' GROUP BY `state`");
+            while($row = mysql_fetch_object($res))
+            {
+                $num[$row->state] = $row->cnt;
+            }
+
+            $total = max($num[FACTION_PRO] + $num[FACTION_CON], 1);
+
+            $additionalData              = unserialize($q->additionalData);
+            $additionalData->percPro     = $num[FACTION_PRO] / $total;
+            $additionalData->percCon     = $num[FACTION_CON] / $total;
+            $additionalData->numCheckIns = $num[FACTION_PRO] + $num[FACTION_CON];
+
+            $sDB->exec("UPDATE `questions` SET `additionalData` = '".mysql_real_escape_string(serialize($additionalData))."' WHERE `questionId` = '".i($questionId)."' LIMIT 1;");
+
+            $sTimer->stop("updateQuestionStats::factionData");
         }
-
-        $total = max($num[FACTION_PRO] + $num[FACTION_CON], 1);
-
-        $additionalData              = unserialize($q->additionalData);
-        $additionalData->percPro     = $num[FACTION_PRO] / $total;
-        $additionalData->percCon     = $num[FACTION_CON] / $total;
-        $additionalData->numCheckIns = $num[FACTION_PRO] + $num[FACTION_CON];
-
-        $sDB->exec("UPDATE `questions` SET `additionalData` = '".mysql_real_escape_string(serialize($additionalData))."' WHERE `questionId` = '".i($questionId)."' LIMIT 1;");
-
-        $sTimer->stop("updateQuestionStats::factionData");
 
         $this->updateQuestionScore($questionId);
 
@@ -148,9 +150,12 @@ class StatisticsMgr
             $num[$row->vote] = $row->cnt;
         }
 
-        $score          = $num[VOTE_UP] - $num[VOTE_DN];
+        $score          = $num[VOTE_UP];
+        if (DOWNVOTE_QUESTIONS) {
+            $score          = $score - $num[VOTE_DN];
+        }
+        $scoreTop       = $score;
         $scoreTrending  = $this->trendingScore($score, $q->dateAdded);
-        $scoreTop       = $num[VOTE_UP] - $num[VOTE_DN];
 
         $sDB->exec("UPDATE `questions` SET `score` = '".i($score)."', `scoreTrending` = '".i($scoreTrending)."', `scoreTop` = '".i($scoreTop)."' WHERE `questionId` = '".i($questionId)."' LIMIT 1;");
 
@@ -314,7 +319,7 @@ class StatisticsMgr
             }
         }
 
-        if($argumentId && !$forceVote)
+        if($argumentId && !$forceVote && VOTE_FACTIONS && CONSTRAIN_FACTIONS)
         {
             $faction = $user->getFactionByQuestionId($questionId);
             if($faction == FACTION_NONE)
