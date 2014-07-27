@@ -103,15 +103,5 @@ define("DATABASE_DEFAULT",              0);
 define("DATABASE_USERS",                1);
 define("DATABASE_LOCALIZATION",         2);
 
-define("PAYMENT_METHOD_BANK_TRANSFER",  1);
-define("PAYMENT_METHOD_ELV",            2);
-define("PAYMENT_METHOD_PAYPAL",         3);
-define("PAYMENT_METHOD_BILL",           4);
-
-define("PAYMENT_INTERVAL_MONTHLY",      1);
-define("PAYMENT_INTERVAL_3_MONTHLY",    3);
-define("PAYMENT_INTERVAL_6_MONTHLY",    6);
-define("PAYMENT_INTERVAL_YEARLY",       12);
-
 define("ERROR_MISSING_LANG_VAR",        1);
 ?>
