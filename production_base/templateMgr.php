@@ -122,16 +122,6 @@ class TemplateMgr
         return TEMPLATE_ROOT_ABS;
     }
 
-    public function getSponsorLogosRoot()
-    {
-        return SPONSOR_LOGOS;
-    }
-
-    public function getSponsorLogosRootAbs()
-    {
-        return SPONSOR_LOGOS_ABS;
-    }
-
     public function getStringNumber($key, $search = false, $replace = false, $number = -1)
     {
         switch(i($number))

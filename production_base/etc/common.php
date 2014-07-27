@@ -532,27 +532,4 @@ function url_sanitize($url)
 
     return $url;
 }
-
-function sponsorData($row)
-{
-    $dat = new stdClass();
-
-    if($row->logoHeight == 0 || $row->logoWidth == 0)
-    {
-        $dat->file         = "nologo";
-        $dat->logoWidth    = 103;
-        $dat->logoHeight   = 78;
-    }else
-    {
-        $dat->file         = $row->sponsorId;
-        $dat->logoHeight   = $row->logoHeight;
-        $dat->logoWidth    = $row->logoWidth;
-    }
-
-    $dat->marginTop    = ceil((170 - $dat->logoHeight) / 2);
-    $dat->marginBottom = floor((170 - $dat->logoHeight) / 2);
-    $dat->marginLeft   = (190 - $dat->logoWidth) / 2;
-
-    return $dat;
-}
 ?>

@@ -26,14 +26,6 @@ RewriteRule ^settings/$ index.php?pageTitle=manage_profile [L]
 
 RewriteRule ^user/([0-9]+)/$ index.php?pageTitle=profile&userId=$1 [L]
 
-RewriteRule ^sponsors/$ index.php?pageTitle=sponsors [L]
-
-RewriteRule ^become-sponsor/$ index.php?pageTitle=new_sponsor [L]
-
-RewriteRule ^become-sponsor/$ index.php?pageTitle=new_sponsor [L]
-
-RewriteRule ^sponsors/([0-9]+).png$ uploads/sponsors/l_$1.png [L]
-
 RewriteRule ^([^/\.]+)/$ index.php?pageTitle=question&title=$1&view=0 [L]
 RewriteRule ^([^/\.]+)/details/$ index.php?pageTitle=question&title=$1&view=1 [L]
 

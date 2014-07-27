@@ -50,12 +50,6 @@ class NotificationMgr
     {
     }
 
-    public function sponsor($subject, $message)
-    {
-        $this->sendMail("info@wikiarguments.net", "SPR", $subject, $message);
-        $this->sendMail("buchhaltung@wikiarguments.net", "SPR", $subject, $message);
-    }
-
     public function notifyNewArgument(Question $q, Argument $a)
     {
         global $sDB, $sTimer, $sTemplate;

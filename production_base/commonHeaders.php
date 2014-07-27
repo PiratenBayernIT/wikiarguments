@@ -79,8 +79,6 @@ include("./pages/manageGroup.php");
 include("./pages/editQuestion.php");
 include("./pages/editArgument.php");
 include("./pages/editCounterArgument.php");
-include("./pages/sponsors.php");
-include("./pages/newSponsor.php");
 include("./pages/faq.php");
 include("./pages/overview.php");
 
