@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `arguments` (
   UNIQUE KEY `questionId` (`questionId`,`parentId`,`url`),
   KEY `userId` (`userId`,`questionId`),
   KEY `questionId_2` (`questionId`,`argumentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `badwords` (
   `badwordId` int(11) NOT NULL,
   `category` tinyint(4) NOT NULL,
   `word` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `confirmation_codes` (
   `dateAdded` int(13) NOT NULL,
   PRIMARY KEY (`confirmationId`),
   UNIQUE KEY `userId` (`userId`,`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   PRIMARY KEY (`groupId`),
   UNIQUE KEY `url` (`url`),
   KEY `title` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `group_permissions` (
   PRIMARY KEY (`id`),
   KEY `groupId` (`groupId`,`userId`),
   KEY `userId` (`userId`,`permission`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `localization` (
   `loc_val` text NOT NULL,
   PRIMARY KEY (`loc_language`,`loc_key`),
   KEY `loc_language` (`loc_language`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   PRIMARY KEY (`notificationId`),
   UNIQUE KEY `questionId` (`questionId`,`userId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `templateFile` varchar(100) NOT NULL,
   PRIMARY KEY (`pageId`),
   UNIQUE KEY `pageTitle` (`pageTitle`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `state` tinyint(4) NOT NULL,
   PRIMARY KEY (`permissionId`),
   UNIQUE KEY `groupId` (`groupId`,`action`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   KEY `scoreTrending` (`scoreTrending`),
   KEY `scoreTop` (`scoreTop`),
   KEY `type` (`type`,`groupId`,`questionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -193,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `sessionData` text NOT NULL,
   `sessionDate` int(11) NOT NULL,
   PRIMARY KEY (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `signup_tokens` (
   `tokenId` int(11) NOT NULL AUTO_INCREMENT,
   `token` varchar(64) NOT NULL,
   PRIMARY KEY (`tokenId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `groupId` int(11) NOT NULL,
   PRIMARY KEY (`tagId`),
   KEY `tag` (`tag`,`questionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`userId`),
   UNIQUE KEY `userName` (`userName`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------
 
 --
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `user_factions` (
   PRIMARY KEY (`factionId`),
   KEY `userId` (`userId`,`questionId`),
   KEY `questionId` (`questionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -270,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
   `groupId` int(11) NOT NULL,
   `dateAdded` bigint(20) NOT NULL,
   UNIQUE KEY `userId` (`userId`,`groupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -288,5 +288,5 @@ CREATE TABLE IF NOT EXISTS `user_votes` (
   PRIMARY KEY (`voteId`),
   KEY `userId` (`userId`,`questionId`,`argumentId`),
   KEY `questionIdArgumentId` (`questionId`,`argumentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
