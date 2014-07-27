@@ -36,7 +36,7 @@ include("./etc/config.php");
 include("./etc/constants.php");
 include("./etc/opcodes.php");
 include("./etc/common.php");
-include("./functions.php");
+include_once("./functions.php");
 include("./sqlMgr.php");
 include("./memcachedMgr.php");
 include("./templateMgr.php");

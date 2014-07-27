@@ -206,7 +206,7 @@ class TemplateMgr
         $functionsFile = $this->getTemplateRootAbs()."functions.php";
         if(file_exists($functionsFile))
         {
-            include($functionsFile);
+            include_once($functionsFile);
         }
 
         $templatefile = $this->getTemplateRootAbs().$sPage->templateFile();
