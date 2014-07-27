@@ -1,23 +1,14 @@
--- phpMyAdmin SQL Dump
--- version 3.5.7
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Erstellungszeit: 11. Apr 2013 um 17:51
--- Server Version: 5.5.30-30.1-log
--- PHP-Version: 5.3.3-7+squeeze15
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Datenbank: `wikiargument`
+-- Database: `wikiarguments`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `arguments`
+-- Table structure for table `arguments`
 --
 
 CREATE TABLE IF NOT EXISTS `arguments` (
@@ -36,12 +27,12 @@ CREATE TABLE IF NOT EXISTS `arguments` (
   UNIQUE KEY `questionId` (`questionId`,`parentId`,`url`),
   KEY `userId` (`userId`,`questionId`),
   KEY `questionId_2` (`questionId`,`argumentId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `badwords`
+-- Table structure for table `badwords`
 --
 
 CREATE TABLE IF NOT EXISTS `badwords` (
@@ -53,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `badwords` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `confirmation_codes`
+-- Table structure for table `confirmation_codes`
 --
 
 CREATE TABLE IF NOT EXISTS `confirmation_codes` (
@@ -64,12 +55,12 @@ CREATE TABLE IF NOT EXISTS `confirmation_codes` (
   `dateAdded` int(13) NOT NULL,
   PRIMARY KEY (`confirmationId`),
   UNIQUE KEY `userId` (`userId`,`code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `groups`
+-- Table structure for table `groups`
 --
 
 CREATE TABLE IF NOT EXISTS `groups` (
@@ -82,12 +73,12 @@ CREATE TABLE IF NOT EXISTS `groups` (
   PRIMARY KEY (`groupId`),
   UNIQUE KEY `url` (`url`),
   KEY `title` (`title`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `group_permissions`
+-- Table structure for table `group_permissions`
 --
 
 CREATE TABLE IF NOT EXISTS `group_permissions` (
@@ -99,12 +90,12 @@ CREATE TABLE IF NOT EXISTS `group_permissions` (
   PRIMARY KEY (`id`),
   KEY `groupId` (`groupId`,`userId`),
   KEY `userId` (`userId`,`permission`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `localization`
+-- Table structure for table `localization`
 --
 
 CREATE TABLE IF NOT EXISTS `localization` (
@@ -118,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `localization` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE IF NOT EXISTS `notifications` (
@@ -130,12 +121,12 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   PRIMARY KEY (`notificationId`),
   UNIQUE KEY `questionId` (`questionId`,`userId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `pages`
+-- Table structure for table `pages`
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
@@ -146,12 +137,12 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `templateFile` varchar(100) NOT NULL,
   PRIMARY KEY (`pageId`),
   UNIQUE KEY `pageTitle` (`pageTitle`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `permissions`
+-- Table structure for table `permissions`
 --
 
 CREATE TABLE IF NOT EXISTS `permissions` (
@@ -161,12 +152,12 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `state` tinyint(4) NOT NULL,
   PRIMARY KEY (`permissionId`),
   UNIQUE KEY `groupId` (`groupId`,`action`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `questions`
+-- Table structure for table `questions`
 --
 
 CREATE TABLE IF NOT EXISTS `questions` (
@@ -189,12 +180,12 @@ CREATE TABLE IF NOT EXISTS `questions` (
   KEY `scoreTrending` (`scoreTrending`),
   KEY `scoreTop` (`scoreTop`),
   KEY `type` (`type`,`groupId`,`questionId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `sessions`
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE IF NOT EXISTS `sessions` (
@@ -207,19 +198,19 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `signup_tokens`
+-- Table structure for table `signup_tokens`
 --
 
 CREATE TABLE IF NOT EXISTS `signup_tokens` (
   `tokenId` int(11) NOT NULL AUTO_INCREMENT,
   `token` varchar(64) NOT NULL,
   PRIMARY KEY (`tokenId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `sponsors`
+-- Table structure for table `sponsors`
 --
 
 CREATE TABLE IF NOT EXISTS `sponsors` (
@@ -233,12 +224,12 @@ CREATE TABLE IF NOT EXISTS `sponsors` (
   `logoHeight` int(11) NOT NULL,
   PRIMARY KEY (`sId`),
   KEY `sort` (`sort`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `sponsors_data`
+-- Table structure for table `sponsors_data`
 --
 
 CREATE TABLE IF NOT EXISTS `sponsors_data` (
@@ -264,12 +255,12 @@ CREATE TABLE IF NOT EXISTS `sponsors_data` (
   `additionalInformation` varchar(255) NOT NULL,
   PRIMARY KEY (`sponsorId`),
   KEY `amount` (`amount`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `sponsors_payments`
+-- Table structure for table `sponsors_payments`
 --
 
 CREATE TABLE IF NOT EXISTS `sponsors_payments` (
@@ -281,12 +272,12 @@ CREATE TABLE IF NOT EXISTS `sponsors_payments` (
   `dateApproved` int(11) NOT NULL,
   PRIMARY KEY (`paymentId`),
   KEY `sponsorId` (`sponsorId`,`dateStart`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tags`
+-- Table structure for table `tags`
 --
 
 CREATE TABLE IF NOT EXISTS `tags` (
@@ -296,12 +287,12 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `groupId` int(11) NOT NULL,
   PRIMARY KEY (`tagId`),
   KEY `tag` (`tag`,`questionId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -318,12 +309,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`userId`),
   UNIQUE KEY `userName` (`userName`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `user_factions`
+-- Table structure for table `user_factions`
 --
 
 CREATE TABLE IF NOT EXISTS `user_factions` (
@@ -334,12 +324,12 @@ CREATE TABLE IF NOT EXISTS `user_factions` (
   PRIMARY KEY (`factionId`),
   KEY `userId` (`userId`,`questionId`),
   KEY `questionId` (`questionId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `user_groups`
+-- Table structure for table `user_groups`
 --
 
 CREATE TABLE IF NOT EXISTS `user_groups` (
@@ -352,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `user_votes`
+-- Table structure for table `user_votes`
 --
 
 CREATE TABLE IF NOT EXISTS `user_votes` (
@@ -365,4 +355,5 @@ CREATE TABLE IF NOT EXISTS `user_votes` (
   PRIMARY KEY (`voteId`),
   KEY `userId` (`userId`,`questionId`,`argumentId`),
   KEY `questionIdArgumentId` (`questionId`,`argumentId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+

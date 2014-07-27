@@ -1,21 +1,12 @@
--- phpMyAdmin SQL Dump
--- version 3.5.7
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Erstellungszeit: 11. Apr 2013 um 17:53
--- Server Version: 5.5.30-30.1-log
--- PHP-Version: 5.3.3-7+squeeze15
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Datenbank: `wikiargument`
+-- Database: `wikiarguments`
 --
 
 --
--- Daten für Tabelle `localization`
+-- Dumping data for table `localization`
 --
 
 INSERT INTO `localization` (`loc_key`, `loc_language`, `loc_val`) VALUES
@@ -596,7 +587,7 @@ INSERT INTO `localization` (`loc_key`, `loc_language`, `loc_val`) VALUES
 ('USERNAME_ANON', 'en', 'anonymous');
 
 --
--- Daten für Tabelle `pages`
+-- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`pageId`, `pageTitle`, `url`, `className`, `templateFile`) VALUES
@@ -623,7 +614,7 @@ INSERT INTO `pages` (`pageId`, `pageTitle`, `url`, `className`, `templateFile`) 
 (22, 'faq', 'faq', 'PageFaq', 'faq.php');
 
 --
--- Daten für Tabelle `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`permissionId`, `groupId`, `action`, `state`) VALUES
