@@ -528,7 +528,7 @@ class BaseConvert
 function url_sanitize($url)
 {
     mb_internal_encoding("UTF-8");
-    $url = str_replace(" ", "-", mb_strtolower($url));
+    $url = mb_ereg_replace("[^A-Za-z0-9]", "-", mb_strtolower($url));
 
     return $url;
 }
