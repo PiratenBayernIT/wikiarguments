@@ -48,25 +48,23 @@ define("MYSQL_NAME",                        "");
 define("MYSQL_NAME_GLOBAL",                 MYSQL_NAME);
 
 /* url to the template directory with trailing slash */
-define("TEMPLATE_ROOT",                     "http://de.wikiarguments.net/tpl/default/");
+define("TEMPLATE_ROOT",                     "http://localhost/tpl/default/");
 
 /* absolute path to the template directory on the file system */
 define("TEMPLATE_ROOT_ABS",                 "");
 
 /* base url */
-define("SITE_ROOT",                         "http://de.wikiarguments.net/");
+define("SITE_ROOT",                         "http://localhost/");
 
 /* may be used later */
-define("AJAX_URL",                          "http://de.wikiarguments.net/ajax.php");
+define("AJAX_URL",                          "http://localhost/ajax.php");
 
 /* url to the short url service */
-define("SHORTURL_BASE",                     "http://wa.nf/");
+define("SHORTURL_BASE",                     "");
 
 /* sendmail data */
 define("SENDMAIL_FROM",                     "");
 define("SENDMAIL_FROM_NAME",                "");
-
-define("SHORTURL_BASE",         "http://wa.nf/");
 
 define("DEFAULT_LANG",          "deDE");
 
@@ -77,8 +75,6 @@ define("JS_USE_MIN",                        false);
 define("CSS_USE_MIN",                       false);
 define("CSS_USE_SPRITES",                   false);
 define("LANG_USE_CACHE",                    false);
-define("SENDMAIL_FROM",                     "");
-define("SENDMAIL_FROM_NAME",                "");
 
 define("POSTS_ANON",                        false);
 define("SIGNUP_REQUIRE_TOKEN",              false);

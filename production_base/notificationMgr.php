@@ -94,10 +94,10 @@ class NotificationMgr
     {
         if($prefix == "")
         {
-            send_mail_from("bptarguments@piratenpartei.de", "bptarguments@piratenpartei.de", $to, $subject, $message);
+            send_mail_from(SENDMAIL_FROM, SENDMAIL_FROM_NAME, $to, $subject, $message);
         }else
         {
-            send_mail_from("bptarguments@piratenpartei.de", "bptarguments@piratenpartei.de", $to, "[".$prefix."]".$subject, $message);
+            send_mail_from(SENDMAIL_FROM, SENDMAIL_FROM_NAME, $to, "[".$prefix."]".$subject, $message);
         }
     }
 };
