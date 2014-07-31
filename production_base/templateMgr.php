@@ -178,7 +178,7 @@ class TemplateMgr
 
         global $sLog;
         $sLog->logMessage(LOG_TYPE_LANG, $key);
-        return "LANG_VAR_DOES_NOT_EXIST";
+        return $key;
     }
 
     public function isCurrentPage($page)
