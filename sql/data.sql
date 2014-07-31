@@ -97,6 +97,7 @@ INSERT INTO `localization` (`loc_key`, `loc_language`, `loc_val`) VALUES
 ('HTML_META_TITLE_NEW_COUNTER_ARGUMENT', 'de', 'Neues Gegenargument - BPTArguments'),
 ('HTML_META_TITLE_NEW_GROUP', 'de', 'Neue Gruppe'),
 ('HTML_META_TITLE_NEW_QUESTION', 'de', 'Neue Frage - BPTArguments'),
+('HTML_META_TITLE_OVERVIEW', 'de', 'Übersicht - BPTArguments'),
 ('HTML_META_TITLE_PROFILE', 'de', '[USERNAME] - BPTArguments'),
 ('HTML_META_TITLE_QUESTION', 'de', '[QUESTION] - BPTArguments'),
 ('HTML_META_TITLE_SIGNUP', 'de', 'Registrieren - BPTArguments'),
@@ -538,7 +539,8 @@ INSERT INTO `pages` (`pageId`, `pageTitle`, `url`, `className`, `templateFile`) 
 (17, 'edit_argument', 'edit_argument', 'PageEditArgument', 'editArgument.php'),
 (18, 'edit_counter_argument', 'edit_counter_argument', 'PageEditCounterArgument', 'editCounterArgument.php'),
 (19, 'edit_question', 'edit_question', 'PageEditQuestion', 'editQuestion.php'),
-(22, 'faq', 'faq', 'PageFaq', 'faq.php');
+(22, 'faq', 'faq', 'PageFaq', 'faq.php'),
+(23, 'overview', 'overview', 'PageOverview', 'overview.php');
 
 --
 -- Dumping data for table `permissions`
