@@ -63,10 +63,10 @@ class NotificationMgr
         while($row = mysql_fetch_object($res))
         {
             // no notifications for our own arguments.
-            /*if($a->userId() == $row->userId)
+            if($a->userId() == $row->userId)
             {
                 continue;
-            }*/
+            }
 
             $uId         = new BaseConvert($row->userId);
             $qId         = new BaseConvert($q->questionId());
