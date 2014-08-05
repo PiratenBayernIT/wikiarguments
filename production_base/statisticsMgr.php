@@ -359,7 +359,13 @@ class StatisticsMgr
             }
         }
 
-        $this->updateQuestionStats($questionId);
+        if ($argumentId)
+        {
+            $this->updateArgumentScore($questionId, $argumentId);
+        } else
+        {
+            $this->updateQuestionStats($questionId);
+        }
 
         if(!$user->isLoggedIn())
         {
