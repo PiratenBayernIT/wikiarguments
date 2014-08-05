@@ -384,8 +384,8 @@ function drawArgumentBoxRaw(Question $q, $tabs, Argument $a, $basePath, $abstrac
   <div class = "stats question_stats">
     <div class = "points question_points" id = "points_text_'.$q->questionId().'_'.$argumentId.'">'.$numPoints.'</div>
     <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("ARGUMENT_POINTS", Array(), Array(), $numPoints).'</div>
-    '.voteUp('question_vote_up', $q->questionId(), $argumentId, $a->type()).'
-    '.voteDn('question_vote_dn', $q->questionId(), $argumentId, $a->type()).'
+    '.voteUp('argument_vote_up', $q->questionId(), $argumentId, $a->type()).'
+    '.voteDn('argument_vote_dn', $q->questionId(), $argumentId, $a->type()).'
   </div>
   <div class = "argument_title"><a href = "'.$a->url($basePath).'">'.$a->headline().'</a></div>';
 
@@ -792,8 +792,8 @@ function drawArgumentBoxFull(Question $q, Argument $a, $basePath)
   <div class = "stats question_stats">
     <div class = "points question_points" id = "points_text_'.$q->questionId().'_'.$argumentId.'">'.$numPoints.'</div>
     <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("QUESTION_POINTS", Array(), Array(), $numPoints).'</div>
-    '.voteUp('question_vote_up', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
-    '.voteDn('question_vote_dn', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
+    '.voteUp('argument_vote_up', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
+    '.voteDn('argument_vote_dn', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
   </div>
   <div class = "argument_title"><a href = "'.$a->url($basePath).'">'.$a->headline().'</a></div>';
 
