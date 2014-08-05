@@ -43,8 +43,7 @@ $language   = $sTemplate->getLangBase();
   <div class = "thin">
 <?
 
-$details = $sPage->getView() == VIEW_DETAILS ? true : false;
-drawQuestionBoxExtended($sPage->getQuestion(), $sPage->getView(), $sPage->basePath(), false, $details);
+drawQuestionBoxExtended($sPage->getQuestion(), $sPage->getView(), $sPage->basePath(), false, true);
 
 if($sPage->getView() == VIEW_DISCUSSION && VOTE_FACTIONS)
 {

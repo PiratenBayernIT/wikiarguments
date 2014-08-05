@@ -247,7 +247,9 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
     if($appendDetails)
     {
         $ret .= '
-  <div class = "question_details">'.$q->details().'</div>
+  <div class = "question_details">
+    <a href=#arguments>'.$sTemplate->getString("QUESTION_GOTO_ARGUMENTS").'</a>
+'.$q->details().'</div>
       ';
     }
 
@@ -263,7 +265,8 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
 
     $ret .= '
   <div class = "clear"></div>
-</div>';
+</div>
+    <a name="arguments"></a>';
 
     return $ret;
 }
@@ -280,9 +283,6 @@ function drawQuestionBoxExtended(Question $q, $view, $basePath, $a = false, $app
     $tabs = "
 <div class = 'tab".($view == VIEW_DISCUSSION ? " tab_active" : "")."'>
   <a href = '".$basePath."'>".$sTemplate->getString("QUESTION_TAB_DISCUSSION")."</a>
-</div>
-<div class = 'tab".($view == VIEW_DETAILS ? " tab_active" : "")."'>
-  <a href = '".$basePath."details/'>".$sTemplate->getString("QUESTION_TAB_DETAILS")."</a>
 </div>
     ";
 
