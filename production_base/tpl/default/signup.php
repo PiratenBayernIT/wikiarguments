@@ -97,35 +97,6 @@ else { ?>
 
   </div>
 
-  <div class = "login">
-    <form id = "form_login" action = "<? echo $sTemplate->getRoot(); ?>signup/" method = "POST">
-      <div class = "row">
-        <div class = "headline"><? echo $sTemplate->getString("LOGIN_HEADLINE"); ?></div>
-      </div>
-      <div class = "row" style = "margin-top: 35px;">
-        <div class = "label"><? echo $sTemplate->getString("LOGIN_USERNAME"); ?></div>
-        <div class = "input">
-          <input type = "text" id = "login_username" name = "login_username"></input>
-        </div>
-      </div>
-
-      <div class = "row">
-        <div class = "label"><? echo $sTemplate->getString("LOGIN_PASSWORD"); ?></div>
-        <div class = "input">
-          <input type = "password" id = "login_password" name = "login_password"></input>
-        </div>
-      </div>
-
-      <div class = "row row_submit">
-        <button class = "button_blue" onclick = "$('#form_login').submit();"><? echo $sTemplate->getString("LOGIN_SUBMIT"); ?></button>
-        <span class = "button_blue" onclick = "wikiargument.passRequest(); return false;"><? echo $sTemplate->getString("LOGIN_FORGOT_PASSWORD"); ?></span>
-      </div>
-
-      <input type = "hidden" name = "login" id = "login_mode_login" value = "1" />
-      <input type = "hidden" name = "passRequest" id = "login_mode_passRequest" value = "0" />
-    </form>
-  </div>
-
   <div class = "clear"></div>
   </div>
 

@@ -69,6 +69,7 @@ include("./pages/newArgument.php");
 include("./pages/newCounterArgument.php");
 include("./pages/newQuestion.php");
 include("./pages/signup.php");
+include("./pages/login.php");
 include("./pages/logout.php");
 include("./pages/error.php");
 include("./pages/profile.php");

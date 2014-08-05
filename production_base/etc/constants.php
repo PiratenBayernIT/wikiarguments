@@ -46,6 +46,7 @@ define("VIEW_SIGNUP",                   6);
 define("VIEW_NEW_GROUP",                7);
 define("VIEW_EDIT_ARGUMENT",            8);
 define("VIEW_EDIT_COUNTER_ARGUMENT",    9);
+define("VIEW_LOGIN",                    10);
 
 define("BADWORD_CATEGORY_ALL",          0);
 define("BADWORD_CATEGORY_USERNAME",     1);

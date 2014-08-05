@@ -41,10 +41,7 @@ class PageSignup extends Page
 
         $this->view = VIEW_SIGNUP;
 
-        if($sRequest->getInt("login"))
-        {
-            $this->handleLogin();
-        }else if($sRequest->getInt("signup"))
+        if($sRequest->getInt("signup"))
         {
             $this->handleSignup();
         }if($sRequest->getInt("passRequest"))
@@ -56,51 +53,6 @@ class PageSignup extends Page
     public function getView()
     {
         return $this->view;
-    }
-
-    public function handleLogin()
-    {
-        global $sRequest, $sTemplate, $sQuery, $sUser, $sPermissions, $sSession;
-
-        $username = $sRequest->getString("login_username");
-        $password = $sRequest->getString("login_password");
-
-        if($sUser->isLoggedIn())
-        {
-            $this->setError($sTemplate->getString("LOGIN_ERROR_ALREADY_LOGGED_IN"));
-            return false;
-        }
-
-        $user = $sQuery->getUser("userName=".$username);
-        if(!$user)
-        {
-            $user = $sQuery->getUser("userEmail=".$username);
-        }
-        if(!$user)
-        {
-            $this->setError($sTemplate->getString("LOGIN_ERROR_INVALID_USERNAME"));
-            return false;
-        }
-
-        if($sPermissions->getPermission($user, ACTION_LOGIN) == PERMISSION_DISALLOWED)
-        {
-            $this->setError($sTemplate->getString("LOGIN_ERROR_ACCOUNT_PENDING"));
-            return false;
-        }
-
-        if($user->login($password))
-        {
-            $sUser = $user;
-            $sSession->setVal('notification', $sTemplate->getString("LOGIN_SUCCESS"));
-            $sSession->serialize();
-
-            header("Location: ".$sTemplate->getRoot());
-            exit;
-        }else
-        {
-            $this->setError($sTemplate->getString("LOGIN_ERROR_INVALID_PASSWORD"));
-            return false;
-        }
     }
 
     public function checkSessionSignupToken() {
