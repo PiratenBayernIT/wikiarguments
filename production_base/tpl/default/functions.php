@@ -32,7 +32,7 @@
  * thereof with code not governed by the terms of the CPAL.
  *******************************************************************************/
 
-function voteUp($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, $questionType = QUESTION_TYPE_LISTED, $questionFlags = 0)
+function voteUp($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF)
 {
     global $sUser, $sTemplate;
     $canVote  = true;
@@ -40,8 +40,7 @@ function voteUp($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
     $id       = "voteup_".$questionId."_".$argumentId;
     $onSubmit = "";
 
-    if(!$sUser->isLoggedIn() &&
-       ($questionType != QUESTION_TYPE_UNLISTED || !($questionFlags & QUESTION_FLAG_PART_ALL)))
+    if(!$sUser->isLoggedIn())
     {
         $canVote  = false;
         $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN")."\"); return false;";
@@ -83,6 +82,67 @@ function voteUp($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
     return $ret;
 }
 
+function upvoteQuestion($questionId)
+{
+    global $sUser, $sTemplate;
+    $canVote  = true;
+    $vote     = $sUser->getVoteState($questionId, 0);
+    $id       = "voteup_".$questionId."_0";
+    $onSubmit = "";
+
+    if(!$sUser->isLoggedIn())
+    {
+        $canVote  = false;
+        $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN")."\"); return false;";
+    }
+
+    $ret = "";
+
+    if($vote == VOTE_UP)
+    {
+        $title = $sTemplate->getString("QUESTION_REVOKE_VOTE");
+        $css = "";
+    } else
+    {
+        $title = $sTemplate->getString("QUESTION_VOTE_UP");
+        $css = " vote_up_inactive";
+    }
+
+    $onClick = "$('#".$id."').submit();";
+    if(VOTES_AJAX && $onSubmit == "")
+    {
+        $onClick = "wikiargument.vote(".$questionId.", 0, ".($vote == VOTE_UP ? VOTE_NONE : VOTE_UP)."); return false;";
+        $onSubmit = "return false;";
+    }
+
+    $ret = "<form action = '' method = 'POST' id = '".$id."' onsubmit = '".$onSubmit."'>";
+    $ret .= "<div class = 'question_vote_up vote_up ".$css."' title='".$title."' id = 'vote_up_".$questionId."_0' onclick = \"".$onClick."\"></div>";
+    $ret .= "<input type = 'hidden' name = 'vote' value = '".($vote == VOTE_UP ? VOTE_NONE : VOTE_UP)."' />";
+    $ret .= "<input type = 'hidden' name = 'questionId' value = '".$questionId."' />";
+    $ret .= "<input type = 'hidden' name = 'argumentId' value = '0' />";
+    $ret .= "<input type = 'hidden' name = 'vote_select' value = '1' />";
+    $ret .= "</form>";
+
+    return $ret;
+}
+
+
+function showVoteState($questionId) 
+{
+    global $sUser, $sTemplate;
+    $vote     = $sUser->getVoteState($questionId, 0);
+    $css = "";
+    $title = $sTemplate->getString("QUESTION_VOTED");
+
+    if($vote == VOTE_UP)
+    {
+        return "<div class='vote_up question_vote_up' title='".$title."'></div>";
+    }
+
+    return "";
+}
+
+
 function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, $questionType = QUESTION_TYPE_LISTED, $questionFlags = 0)
 {
     global $sUser, $sTemplate;
@@ -98,31 +158,11 @@ function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
         $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN")."\"); return false;";
     }
 
-    if($argumentId && $canVote && CONSTRAIN_FACTIONS)
-    {
-        $faction = $sUser->getFactionByQuestionId($questionId);
-
-        if($faction != $argumentType)
-        {
-            $canVote  = false;
-            $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_CHECKED_IN")."\"); return false;";
-        }
-    }
-
     $ret = "";
 
-    if (DOWNVOTE_QUESTIONS) {
-        if($vote != VOTE_DN)
-        {
-            $css .= " vote_dn_inactive";
-        }
-        $newvalue = $vote == VOTE_DN ? VOTE_NONE : VOTE_DN;
-    } else {
-        if($vote != VOTE_NONE)
-        {
-            $css .= " vote_dn_inactive";
-        }
-        $newvalue = $vote == VOTE_DN ? VOTE_NONE : VOTE_DN;
+    if($vote != VOTE_DN)
+    {
+        $css .= " vote_dn_inactive";
     }
 
     $onClick = "$('#".$id."').submit();";
@@ -134,8 +174,8 @@ function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
     }
 
     $ret = "<form action = '' method = 'POST' id = '".$id."' onsubmit = '".$onSubmit."'>";
-    $ret .= "<div class = 'vote_dn ".$css."' onclick = \"$('#".$id."').submit();\"></div>";
-    $ret .= "<input type = 'hidden' name = 'vote' value = '".$newvalue."' />";
+    $ret .= "<div class = 'vote_dn ".$css."' id = 'vote_dn_".$questionId."_".$argumentId."' onclick = \"".$onClick."\"></div>";
+    $ret .= "<input type = 'hidden' name = 'vote' value = '".($vote == VOTE_DN ? VOTE_NONE : VOTE_DN)."' />";
     $ret .= "<input type = 'hidden' name = 'questionId' value = '".$questionId."' />";
     $ret .= "<input type = 'hidden' name = 'argumentId' value = '".$argumentId."' />";
     $ret .= "<input type = 'hidden' name = 'vote_select' value = '1' />";
@@ -144,7 +184,30 @@ function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
     return $ret;
 }
 
-function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $appendTags = true)
+function makeTags($sPage, $q, $sTemplate)
+{
+    $ret = '<div class = "tags"><ul>';
+
+    $sorting = "title/";
+    if (method_exists($sPage, "getSort") && $sPage->getSort() == SORT_TOP) {
+        $sorting = "top/";
+    }
+    $tags = $q->tags();
+    foreach($tags as $k => $v)
+    {
+        if($sPage->group() && $sPage->group()->url())
+        {
+            $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'groups/'.$sPage->group()->url().'/tags/title/'.$v.'/">'.$v.'</a></li>';
+        }else
+        {
+            $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/'.$sorting.$v.'/">'.$v.'</a></li>';
+        }
+    }
+    $ret .= '</ul></div>';
+    return $ret;
+}
+
+function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $appendTags = true, $voting = true)
 {
     global $sTemplate, $sPage, $sUser;
 
@@ -162,9 +225,18 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
 <div class = "question'.($tabs ? ' question_no_margin' : '').'" id = "question_'.$q->questionId().'">
   <div class = "stats question_stats">
     <div class = "points question_points" id = "points_text_'.$q->questionId().'_0">'.$numPoints.'</div>
-    <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("QUESTION_POINTS", Array(), Array(), $numPoints).'</div>
-    '.voteUp('question_vote_up', $q->questionId(), 0, ARGUMENT_INDEF, $q->type(), $q->flags()).'
-    '.voteDn('question_vote_dn', $q->questionId(), 0, ARGUMENT_INDEF, $q->type(), $q->flags()).'
+    <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("QUESTION_POINTS", Array(), Array(), $numPoints).'</div>';
+
+
+    if ($voting)
+    {
+        $ret .= upvoteQuestion($q->questionId());
+    } else
+    {
+        $ret .= showVoteState($q->questionId());
+    }
+
+    $ret .= '
   </div>
   <div class = "question_title"><p><a href = "'.$q->url().'">'.$q->title().'</a></p></div>
   <div class = "question_num_arguments">
@@ -187,28 +259,7 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
         $ret .= '<div class = "author question_author" style="display:none">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($q->timeSince(), $q->authorLink())).'</div>';
     }
 
-    $ret .= '<div class = "tags"><ul>';
-
-    if($appendTags)
-    {
-        $sorting = "title/";
-        if (method_exists($sPage, "getSort") && $sPage->getSort() == SORT_TOP) {
-            $sorting = "top/";
-        }
-        $tags = $q->tags();
-        foreach($tags as $k => $v)
-        {
-            if($sPage->group() && $sPage->group()->url())
-            {
-                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'groups/'.$sPage->group()->url().'/tags/title/'.$v.'/">'.$v.'</a></li>';
-            }else
-            {
-                $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/'.$sorting.$v.'/">'.$v.'</a></li>';
-            }
-        }
-    }
-
-    $ret .= '</ul></div>';
+    if($appendTags) $ret .= makeTags($sPage, $q, $sTemplate);
 
     $ret .= '
   <div class = "clear"></div>
@@ -219,7 +270,7 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
 
 function drawQuestionBox(Question $q)
 {
-    echo drawQuestionBoxRaw($q);
+    echo drawQuestionBoxRaw($q, "", false, true, false);
 }
 
 function drawQuestionBoxExtended(Question $q, $view, $basePath, $a = false, $appendDetails = false)
@@ -332,9 +383,9 @@ function drawArgumentBoxRaw(Question $q, $tabs, Argument $a, $basePath, $abstrac
 <div class = "argument_extended '.($tabs ? "" : " argument_extended_no_tabs").'">
   <div class = "stats question_stats">
     <div class = "points question_points" id = "points_text_'.$q->questionId().'_'.$argumentId.'">'.$numPoints.'</div>
-    <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("QUESTION_POINTS", Array(), Array(), $numPoints).'</div>
-    '.voteUp('question_vote_up', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
-    '.voteDn('question_vote_dn', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
+    <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("ARGUMENT_POINTS", Array(), Array(), $numPoints).'</div>
+    '.voteUp('question_vote_up', $q->questionId(), $argumentId, $a->type()).'
+    '.voteDn('question_vote_dn', $q->questionId(), $argumentId, $a->type()).'
   </div>
   <div class = "argument_title"><a href = "'.$a->url($basePath).'">'.$a->headline().'</a></div>';
 
@@ -594,7 +645,7 @@ function drawArgument(Question $q, Argument $a, $basePath, $abstract = true)
   <div class = "argument '.($a->type() == ARGUMENT_PRO ? "argument_pro".$suffix : "argument_con".$suffix).'">
     <div class = "stats argument_stats">
       <div class = "points argument_points" id = "points_text_'.$q->questionId().'_'.$a->argumentId().'">'.$numPoints.'</div>
-      <div class = "points_text argument_points_text">'.$sTemplate->getStringNumber("QUESTION_POINTS", Array(), Array(), $numPoints).'</div>
+      <div class = "points_text argument_points_text">'.$sTemplate->getStringNumber("ARGUMENT_POINTS", Array(), Array(), $numPoints).'</div>
       '.voteUp('argument_vote_up', $a->questionId(), $a->argumentId(), $a->type(), $q->type(), $q->flags()).'
       '.voteDn('argument_vote_dn', $a->questionId(), $a->argumentId(), $a->type(), $q->type(), $q->flags()).'
     </div>';

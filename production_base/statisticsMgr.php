@@ -151,9 +151,7 @@ class StatisticsMgr
         }
 
         $score          = $num[VOTE_UP];
-        if (DOWNVOTE_QUESTIONS) {
-            $score          = $score - $num[VOTE_DN];
-        }
+        $score          = $score - $num[VOTE_DN];
         $scoreTop       = $score;
         $scoreTrending  = $this->trendingScore($score, $q->dateAdded);
 

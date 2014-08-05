@@ -454,6 +454,7 @@ position:absolute;
 }
 
 .question_stats {
+  width: 120px;
   float: left;
   margin-right: 30px;
   position: relative; z-index: 5;
@@ -487,19 +488,20 @@ position:absolute;
 
 .question_vote_up {
   position: absolute;
-  top: 0px;
-  right: 2px;
+  top: 2px;
+  left: 100px;
+  width: 30px;
+  height: 32px;
   cursor: hand;
   cursor: pointer;
+  background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/vote_up_big.png');
 }
 
-.question_vote_dn {
-  position: absolute;
-  top: 36px;
-  right: 2px;
-  cursor: hand;
-  cursor: pointer;
+
+.question_vote_up.vote_up_inactive {
+  background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/vote_up_big_inactive.png');
 }
+
 
 .question_title {
   color: #004A80;

@@ -421,6 +421,22 @@ _Wikiargument.prototype.handleVoteResponse = function(resp)
         var vote  = data.vote;
         var score = data.score;
 
+        if(aId == 0 && vote == <? echo VOTE_UP ?>)
+        {
+            $('#vote_up_' + qId + '_' + aId).removeClass('vote_up_inactive')
+                                            .unbind("click")
+                                            .attr('onclick','')
+                                            .attr('title', '<? echo $sTemplate->getString("QUESTION_REVOKE_VOTE"); ?>')
+                                            .click(function(){ wikiargument.vote(qId, 0, <? echo VOTE_NONE; ?>); return false; });
+        }
+        else if(aId == 0)
+        {
+            $('#vote_up_' + qId + '_' + aId).addClass('vote_up_inactive')
+                                            .unbind("click")
+                                            .attr('onclick','')
+                                            .attr('title', '<? echo $sTemplate->getString("QUESTION_VOTE_UP"); ?>')
+                                            .click(function(){ wikiargument.vote(qId, aId, <? echo VOTE_UP; ?>); return false; });
+        }
         if(vote == <? echo VOTE_UP ?>)
         {
             $('#vote_up_' + qId + '_' + aId).removeClass('vote_up_inactive')
