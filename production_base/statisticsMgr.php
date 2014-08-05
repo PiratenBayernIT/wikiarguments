@@ -317,21 +317,6 @@ class StatisticsMgr
             }
         }
 
-        if($argumentId && !$forceVote && VOTE_FACTIONS && CONSTRAIN_FACTIONS)
-        {
-            $faction = $user->getFactionByQuestionId($questionId);
-            if($faction == FACTION_NONE)
-            {
-                return false;
-            }
-
-            $argument = $sQuery->getArgumentById($argumentId);
-            if($argument->type() != $faction)
-            {
-                return false;
-            }
-        }
-
         if($user->isLoggedIn())
         {
             $this->lazyUpdateUserStats($questionId, $argumentId, $vote, $user->getUserId());

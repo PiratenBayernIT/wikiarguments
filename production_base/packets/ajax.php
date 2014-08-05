@@ -162,16 +162,6 @@ class CmsgVote extends PacketHandler
             return false;
         }
 
-        // faction checkin
-        if($argument)
-        {
-            $faction = $sUser->getFactionByQuestionId($qId);
-            if($faction != $argument->type())
-            {
-                $response->data->error = $sTemplate->getString("NOTICE_VOTE_NOT_CHECKED_IN");
-            }
-        }
-
         $sStatistics->vote($question, $aId, $vote);
 
         $response->data->result = 1;
