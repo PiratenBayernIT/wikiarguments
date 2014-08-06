@@ -108,26 +108,38 @@ var wikiargument = new _Wikiargument('<? echo $sUser->getUserId(); ?>');
   <div id = "wrapper">
     <div id = "header">
 
-      <div id = "header_orange"></div>
-      <div id = "header_white"></div>
-      <div id = "header_content">
-        <a href = '<? echo $sTemplate->getRoot(); ?>'>
-          <div id = "header_logo"></div>
-        </a>
-        <a href="<? echo $sTemplate->getRoot(); ?>" class="header-text"><? echo $sTemplate->getString("HEADER_TEXT"); ?></a>
-<?
+      <div id = "header_orange">
+        <div class="header_top_menu">
+          <div class="header_title">
+            <a href="<? echo $sTemplate->getRoot(); ?>"><? echo $sTemplate->getString("HEADER_TEXT"); ?></a>
+          </div>
+  <? if($sUser->isLoggedIn()) { ?>
+          <div class="header_userstatus"><? echo htmlspecialchars($sUser->getUserStatus()); ?></div>
+          <div id = "header_menu" class = "header_menu">
+            <div class = "username">
+              <? echo htmlspecialchars($sUser->getUserName()); ?>
+              <div class = "up_arrow"></div>
+              <div class = "dn_arrow"></div>
+            </div>
 
-if($sPage->getQuestion() && $sPage->getQuestion()->type() == QUESTION_TYPE_UNLISTED)
-{
-?>
-    <div id = "header_logo_unlisted"></div>
-<?
-}
-
-?>
-
-        <div id = "header_navigation">
-        <? echo htmlspecialchars($sUser->getUserStatus()); ?>
+            <div class = "hidden profile_menu">
+              <ul class="user_profile_list">
+                  <li><div class = "icon_share_page"></div><a href = '#' onclick = "wikiargument.sharePage('<? echo $sPage->shortUrl() ? $sPage->shortUrl() : ''; ?>');"><? echo $sTemplate->getString("HEADER_NAVI_SHARE_PAGE"); ?></a></li>
+                  <li><div class = "icon_manage_profile"></div><a href = '<? echo $sTemplate->getRoot(); ?>settings/'><? echo $sTemplate->getString("HEADER_NAVI_MANAGE_PROFILE"); ?></a></li>
+                  <li><div class = "icon_my_profile"></div><a href = '<? echo $sTemplate->getRoot(); ?>user/<? echo $sUser->getUserId(); ?>/'><? echo $sTemplate->getString("HEADER_NAVI_MY_PROFILE"); ?></a></li>
+                  <li><div class = "icon_logout"></div><a href = '<? echo $sTemplate->getRoot(); ?>logout/'><? echo $sTemplate->getString("HEADER_NAVI_LOGOUT"); ?></a></li>
+              </ul>
+            </div>
+          </div>
+  <? }else{ ?>
+          <div class = "header_signup" style = "text-align: center;">
+            <a href = '<? echo $sTemplate->getRoot(); ?>login/'><? echo $sTemplate->getString("HEADER_LOGIN"); ?></a>
+          </div>
+  <? } ?>
+        </div>
+      </div>
+      <div class="header_white">
+        <div class="header_navigation">
           <div class = "navi_point title <? echo $titleActive ? "current_page" : "";?>">
             <a href = '<? echo $sTemplate->getRoot(); ?><? echo $filterStringTitle; ?>'><? echo $sTemplate->getString("NAVIGATION_TITLE"); ?></a>
           </div>
@@ -148,30 +160,4 @@ if($sPage->getQuestion() && $sPage->getQuestion()->type() == QUESTION_TYPE_UNLIS
           </form>
         </div>
       </div>
-
-      <div id = "header_menu_wrapper">
-<? if($sUser->isLoggedIn()) { ?>
-        <div id = "header_menu" class = "header_menu">
-          <div class = "username">
-            <? echo htmlspecialchars($sUser->getUserName()); ?>
-            <div class = "up_arrow"></div>
-            <div class = "dn_arrow"></div>
-          </div>
-
-          <div class = "hidden profile_menu">
-            <ul class="user_profile_list">
-                <li><div class = "icon_share_page"></div><a href = '#' onclick = "wikiargument.sharePage('<? echo $sPage->shortUrl() ? $sPage->shortUrl() : ''; ?>');"><? echo $sTemplate->getString("HEADER_NAVI_SHARE_PAGE"); ?></a></li>
-                <li><div class = "icon_manage_profile"></div><a href = '<? echo $sTemplate->getRoot(); ?>settings/'><? echo $sTemplate->getString("HEADER_NAVI_MANAGE_PROFILE"); ?></a></li>
-                <li><div class = "icon_my_profile"></div><a href = '<? echo $sTemplate->getRoot(); ?>user/<? echo $sUser->getUserId(); ?>/'><? echo $sTemplate->getString("HEADER_NAVI_MY_PROFILE"); ?></a></li>
-                <li><div class = "icon_logout"></div><a href = '<? echo $sTemplate->getRoot(); ?>logout/'><? echo $sTemplate->getString("HEADER_NAVI_LOGOUT"); ?></a></li>
-            </ul>
-          </div>
-        </div>
-<? }else{ ?>
-          <div class = "header_signup" style = "text-align: center;">
-            <a href = '<? echo $sTemplate->getRoot(); ?>login/'><? echo $sTemplate->getString("HEADER_LOGIN"); ?></a>
-          </div>
-<? } ?>
-      </div>
-
     </div>
