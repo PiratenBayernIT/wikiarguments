@@ -237,8 +237,8 @@ width:45px;
 #content_wide {
   position: relative;
   width: 1200px;
-  left: 50%;
-  margin-left: -600px;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 180px;
   clear: both;
   padding-top: 15px;
