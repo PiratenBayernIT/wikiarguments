@@ -1413,7 +1413,6 @@ clear:both;}
 
 .row_submit {
   height: 27px;
-  text-align: right;
 }
 
 .row.row_submit{
@@ -1664,12 +1663,7 @@ cursor: pointer;
 
 .signup {
   background: url("<? echo $sTemplate->getTemplateRoot(); ?>img/backgrounds/register_bg.png") no-repeat scroll center 31px transparent;
-    float: right;
     padding-bottom: 40px;
-    padding-left: 50px;
-    width: 400px;
-    border-left-style: dashed;
-    border-width: 1px;
 }
 
 .login {
