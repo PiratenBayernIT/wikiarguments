@@ -151,7 +151,7 @@ class PageEditCounterArgument extends Page
     {
         global $sRequest, $sTemplate, $sUser, $sPermissions;
 
-        if(!$sUser->isLoggedIn()) ||
+        if(!$sUser->isLoggedIn() ||
             $sPermissions->getPermission($sUser, ACTION_NEW_ARGUMENT) == PERMISSION_DISALLOWED)
         {
             return false;
