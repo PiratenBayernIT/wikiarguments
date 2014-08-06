@@ -71,13 +71,6 @@ class PageNewQuestion extends Page
             return false;
         }
 
-        if($this->group && $this->group->getPermission($sUser, ACTION_NEW_QUESTION) == PERMISSION_DISALLOWED)
-        {
-            $this->setError($sTemplate->getString("NOTICE_NEW_QUESTION_NO_PERMISSION"));
-            return false;
-        }
-
-
         return true;
     }
 
@@ -155,9 +148,9 @@ class PageNewQuestion extends Page
         $additionalData->numCheckIns = 0;
         $additionalData->tags        = array_unique($tagsNoQuestion);
 
-        $sDB->exec("INSERT INTO `questions` (`questionId`, `title`, `url`, `details`, `dateAdded`, `userId`, `score`, `scoreTrending`, `scoreTop`, `additionalData`, `groupId`, `type`, `flags`) VALUES
+        $sDB->exec("INSERT INTO `questions` (`questionId`, `title`, `url`, `details`, `dateAdded`, `userId`, `score`, `scoreTrending`, `scoreTop`, `additionalData`, `type`, `flags`) VALUES
                                             (NULL, '".mysql_real_escape_string($question)."', '".mysql_real_escape_string($url)."', '".mysql_real_escape_string($details)."',
-                                             '".time()."', '".$sUser->getUserId()."', '0', '0', '0', '".serialize($additionalData)."', '".i($this->groupId)."', '".i($type)."', '".i($flags)."');");
+                                             '".time()."', '".$sUser->getUserId()."', '0', '0', '0', '".serialize($additionalData)."', '".i($type)."', '".i($flags)."');");
 
         $questionId = mysql_insert_id();
 
@@ -169,24 +162,19 @@ class PageNewQuestion extends Page
 
         foreach($tags as $k => $v)
         {
-            $sDB->exec("INSERT INTO `tags` (`tagId`, `questionId`, `tag`, `groupId`) VALUES(NULL, '".i($questionId)."', '".mysql_real_escape_string($v)."', '".i($this->groupId)."');");
+            $sDB->exec("INSERT INTO `tags` (`tagId`, `questionId`, `tag`) VALUES(NULL, '".i($questionId)."', '".mysql_real_escape_string($v)."');");
         }
 
-        if($this->group)
+        if($flags & QUESTION_FLAG_PART_ALL)
         {
-            $this->redirectUrl = $sTemplate->getRoot()."groups/".$this->group->url()."/".$url."/";
-        }else
-        {
-            if($flags & QUESTION_FLAG_PART_ALL)
-            {
-                $url = "unregistered/".$url;
-            }
-            if($type == QUESTION_TYPE_UNLISTED)
-            {
-                $url = "unlisted/".$url;
-            }
-            $this->redirectUrl = $sTemplate->getRoot().$url."/";
+            $url = "unregistered/".$url;
         }
+
+        if($type == QUESTION_TYPE_UNLISTED)
+        {
+            $url = "unlisted/".$url;
+        }
+        $this->redirectUrl = $sTemplate->getRoot().$url."/";
 
         $sUser->follow($questionId);
 
@@ -230,11 +218,6 @@ class PageNewQuestion extends Page
     public function getFormUrl()
     {
         global $sTemplate;
-
-        if($this->group)
-        {
-            return $sTemplate->getRoot()."groups/".$this->group->url()."/new-question/";
-        }
 
         return $sTemplate->getRoot()."new-question/";
     }

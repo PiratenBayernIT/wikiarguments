@@ -46,18 +46,7 @@ class Page
         $this->error        = "";
         $this->notice       = "";
         $this->shortUrl     = "";
-        $this->groupId      = 0;
-        $this->group        = NULL;
 
-        if($sRequest->getString("group"))
-        {
-            $group = new Group(-1, false, $sRequest->getString("group"));
-            if($group->groupId())
-            {
-                $this->groupId  = $group->groupId();
-                $this->group    = $group;
-            }
-        }
     }
 
     /*
@@ -121,16 +110,6 @@ class Page
         return $this->pageTitle;
     }
 
-    public function groupId()
-    {
-        return $this->groupId;
-    }
-
-    public function group()
-    {
-        return $this->group;
-    }
-
     public function getQuestion()
     {
         return false;
@@ -141,7 +120,5 @@ class Page
     protected $error;
     protected $notice;
     protected $shortUrl;
-    protected $groupId;
-    protected $group;
 }
 ?>

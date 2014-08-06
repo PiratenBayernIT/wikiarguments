@@ -41,15 +41,13 @@ $localVars = Array("NOTICE_UNFOLLOW_SUCCESS",
                    "ERROR_FOLLOW_NOT_LOGGED_IN",
                    "NOTICE_VOTE_NOT_LOGGED_IN");
 ?>
-function _Wikiargument(group, userId)
+function _Wikiargument(userId)
 {
-    this.group  = group;
     this.userId = userId;
 
     this.initLocalVars();
 };
 
-_Wikiargument.prototype.group;
 _Wikiargument.prototype.userId;
 _Wikiargument.prototype.langVars;
 
@@ -198,10 +196,6 @@ _Wikiargument.prototype.submitSearch = function(sort)
     //query = query.replace(" ", "-");
 
     var root  = '<? echo $sTemplate->getRoot(); ?>';
-    if(this.group)
-    {
-        root = root + "groups/" + this.group + "/";
-    }
     var url   = "";
 
     if(sort == <? echo SORT_TOP; ?>)
@@ -273,17 +267,6 @@ _Wikiargument.prototype.changeQuestionFlags = function()
     {
         $('#row_question_unlisted_manipulation').hide();
     }
-};
-
-_Wikiargument.prototype.deleteGroup = function()
-{
-    this.raisePrompt("<? echo $sTemplate->getString("GROUP_DELETE_GROUP_PROMPT"); ?>", function(){ $("#form_delete_group").submit(); }, function(){ return false; });
-    return false;
-};
-
-_Wikiargument.prototype.changeOwnership = function()
-{
-    this.raisePrompt("<? echo $sTemplate->getString("GROUP_CHANGE_OWNERSHIP_PROMPT"); ?>", function(){ $("#form_change_ownership").submit(); }, function(){ return false; });
 };
 
 _Wikiargument.prototype.newSponsorUpdatePaymentData = function()

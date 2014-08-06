@@ -130,12 +130,6 @@ class PageEditCounterArgument extends Page
             return false;
         }
 
-        if($this->group && $this->group->getPermission($sUser, ACTION_NEW_ARGUMENT) == PERMISSION_DISALLOWED)
-        {
-            $this->setError($sTemplate->getString("NOTICE_NEW_ARGUMENT_NO_PERMISSION"));
-            return false;
-        }
-
         return true;
     }
 

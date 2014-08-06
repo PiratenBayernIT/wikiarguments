@@ -56,19 +56,14 @@ class PageQuestion extends Page
 
         if($sRequest->getInt("vote_select"))
         {
-            if($this->question->group() && $this->question->group()->getPermission($sUser, ACTION_VOTE) == PERMISSION_DISALLOWED)
-            {
-            }else
-            {
-                $vote       = $sRequest->getInt("vote");
-                $questionId = $sRequest->getInt("questionId");
-                $argumentId = $sRequest->getInt("argumentId");
-                $sStatistics->vote($this->question, $argumentId, $vote);
+            $vote       = $sRequest->getInt("vote");
+            $questionId = $sRequest->getInt("questionId");
+            $argumentId = $sRequest->getInt("argumentId");
+            $sStatistics->vote($this->question, $argumentId, $vote);
 
-                //header("Location: ".$this->question->url()."#argument_wrapper_".$questionId."_".$argumentId);
-                header("Location: ".$this->question->url());
-                exit;
-            }
+            //header("Location: ".$this->question->url()."#argument_wrapper_".$questionId."_".$argumentId);
+            header("Location: ".$this->question->url());
+            exit;
         }
 
         if($this->view == VIEW_DETAILS)
@@ -82,21 +77,16 @@ class PageQuestion extends Page
         if($sRequest->getInt("faction_select") && VOTE_FACTIONS &&
            ($sUser->isLoggedIn() || $this->question->hasFlag(QUESTION_FLAG_PART_ALL)))
         {
-            if($this->question->group() && $this->question->group()->getPermission($sUser, ACTION_VOTE) == PERMISSION_DISALLOWED)
-            {
-            }else
-            {
-                $faction = $sRequest->getInt("faction");
+            $faction = $sRequest->getInt("faction");
 
-                validateFaction($faction);
+            validateFaction($faction);
 
-                $sUser->setFactionByQuestionId($this->question->questionId(), $faction);
+            $sUser->setFactionByQuestionId($this->question->questionId(), $faction);
 
-                $sStatistics->updateQuestionStats($this->question->questionId());
+            $sStatistics->updateQuestionStats($this->question->questionId());
 
-                header("Location: ".$this->question->url());
-                exit;
-            }
+            header("Location: ".$this->question->url());
+            exit;
         }
     }
 
@@ -117,12 +107,6 @@ class PageQuestion extends Page
         if(!$this->question)
         {
             $this->setError($sTemplate->getString("ERROR_INVALID_QUESTION"));
-            return false;
-        }
-
-        if($this->question->group() && $this->question->group()->getPermission($sUser, ACTION_VIEW_GROUP) == PERMISSION_DISALLOWED)
-        {
-            $this->setError($sTemplate->getString("ERROR_GROUP_INSUFFICIENT_RIGHTS"));
             return false;
         }
 

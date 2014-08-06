@@ -1375,11 +1375,6 @@ background:url(<? echo $sTemplate->getTemplateRoot(); ?>img/assets/plus.png) no-
   margin-left: 175px;
 }
 
-.manage_group {
-  width: 600px;
-  margin-left: 175px;
-}
-
 .row {
 
   padding-top: 60px;
@@ -1846,16 +1841,6 @@ background: linear-gradient(to bottom,  #4188c8 0%,#3275b7 100%);
   margin-top: 11px;
 }
 
-.icon_new_group {
-  background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/icon_new_group.png') no-repeat;
-  width: 32px;
-  height: 23px;
-  float: left;
-  margin-right: 11px;
-  margin-left: 10px;
-  margin-top: 11px;
-}
-
 .icon_my_profile {
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/icon_my_profile.png') no-repeat;
   width: 23px;
@@ -2009,17 +1994,6 @@ ul.user_profile_list li:first-child {
 ul.user_profile_list li:hover {
   background: #458bd1;
 }
-
-ul.user_profile_list .user_profile_list_manage_group {
-  background: #4E4E4E;
-  border-bottom: 1px solid #707981;
-  border-top: 1px solid #60656c;
-}
-
-ul.user_profile_list .user_profile_list_manage_group:hover {
-  background: #8A8A8A;
-}
-
 
 /* Check in pro button*/
 .checkin_pro{
@@ -2415,36 +2389,6 @@ clear:both;
   background: url('<? echo $sTemplate->getTemplateRoot(); ?>img/icon_num_arguments.png');
 }
 
-#new_group_title {
-    border: 1px solid #B5B5B5;
-    border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 2px 2px 1px #DDDDDD inset;
-    height: 32px;
-    padding-left: 3px;
-    width: 100%;
-    font-family:"Imprima", sans-serif;
-    font-size: 24px;
-}
-
-#input_new_group_title {
-  /* width: 100%; */
-}
-
-.manage_group_label {
-  float: left;
-  color: #040404;
-  width: 200px;
-  position: relative;
-  z-index: 2;
-  padding-top: 5px;
-}
-
-.manage_group_col {
-  color: #040404;
-  width:400px;
-  float:left;
-}
-
 textarea {
    border: 1px solid #B5B5B5;
    border-radius: 5px;
@@ -2454,22 +2398,6 @@ textarea {
    font-size: 16px;
 }
 
-
-
-#group_users {
-  height: 75px;
-  margin-right: 20px;
-	color:gray;
-}
-
-.row_manage_group_users {
-  height: 28px;
-
-}
-
-.permissions, .group_owner {
-  margin-right: 30px;
-}
 
 .prompt_yes {
   margin-right: 50px !important;

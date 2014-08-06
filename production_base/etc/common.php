@@ -211,23 +211,6 @@ function validateVote($vote, $redirect = true)
     return true;
 }
 
-function validateGroupPermissions($permissions, $redirect = true)
-{
-    global $sTemplate;
-
-    if($permissions < 1 || $permissions > 7)
-    {
-        if($redirect)
-        {
-            $sTemplate->error($sTemplate->getString("ERROR_INVALID_PERMISSIONS"));
-        }
-
-        return false;
-    }
-
-    return true;
-}
-
 function validateQuestionType($type, $redirect = true)
 {
     global $sTemplate;

@@ -71,19 +71,14 @@ class PageArgument extends Page
 
         if($sRequest->getInt("vote_select"))
         {
-            if($this->question->group() && $this->question->group()->getPermission($sUser, ACTION_VOTE) == PERMISSION_DISALLOWED)
-            {
-            }else
-            {
-                $vote       = $sRequest->getInt("vote");
-                $questionId = $sRequest->getInt("questionId");
-                $argumentId = $sRequest->getInt("argumentId");
-                $sStatistics->vote($this->question, $argumentId, $vote);
+            $vote       = $sRequest->getInt("vote");
+            $questionId = $sRequest->getInt("questionId");
+            $argumentId = $sRequest->getInt("argumentId");
+            $sStatistics->vote($this->question, $argumentId, $vote);
 
-                //header("Location: ".$this->argument->url($this->question->url())."#argument_wrapper_".$questionId."_".$argumentId);
-                header("Location: ".$this->argument->url($this->question->url()));
-                exit;
-            }
+            //header("Location: ".$this->argument->url($this->question->url())."#argument_wrapper_".$questionId."_".$argumentId);
+            header("Location: ".$this->argument->url($this->question->url()));
+            exit;
         }
 
         $this->setShortUrl($this->argument->shortUrl());
@@ -101,12 +96,6 @@ class PageArgument extends Page
         if(!$this->question)
         {
             $this->setError($sTemplate->getString("ERROR_INVALID_ARGUMENT"));
-            return false;
-        }
-
-        if($this->question->group() && $this->question->group()->getPermission($sUser, ACTION_VIEW_GROUP) == PERMISSION_DISALLOWED)
-        {
-            $this->setError($sTemplate->getString("ERROR_GROUP_INSUFFICIENT_RIGHTS"));
             return false;
         }
 

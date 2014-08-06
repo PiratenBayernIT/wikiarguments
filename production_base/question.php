@@ -63,12 +63,6 @@ class Question
         $this->scoreTop       = $row->scoreTop;
         $this->additionalData = unserialize($row->additionalData);
         $this->timeSince      = timeSinceString($row->dateAdded);
-        $this->groupId        = $row->groupId;
-        $this->group          = NULL;
-        if($this->groupId)
-        {
-            $this->group = new Group($this->groupId);
-        }
         $this->type           = $row->type;
         $this->flags          = $row->flags;
 
@@ -150,11 +144,6 @@ class Question
     public function url()
     {
         global $sTemplate;
-
-        if($this->groupId())
-        {
-            return $sTemplate->getRoot()."groups/".$this->group->url()."/".$this->url."/";
-        }
 
         return $sTemplate->getRoot().$this->url."/";
     }
@@ -307,16 +296,6 @@ class Question
         return $num;
     }
 
-    public function groupId()
-    {
-        return $this->groupId;
-    }
-
-    public function group()
-    {
-        return $this->group;
-    }
-
     public function type()
     {
         return $this->type;
@@ -372,8 +351,6 @@ class Question
     private $score;
     private $timeSince;
     private $additionalData;
-    private $groupId;
-    private $group;
     private $type;
     private $flags;
     private $url;

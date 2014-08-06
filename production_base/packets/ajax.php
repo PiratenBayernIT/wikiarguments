@@ -155,13 +155,6 @@ class CmsgVote extends PacketHandler
             return false;
         }
 
-        // group validation
-        if($question->group() && $question->group()->getPermission($sUser, ACTION_VOTE) == PERMISSION_DISALLOWED)
-        {
-            $response->data->error = $sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN");
-            return false;
-        }
-
         $sStatistics->vote($question, $aId, $vote);
 
         $response->data->result = 1;

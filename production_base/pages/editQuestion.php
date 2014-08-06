@@ -93,13 +93,6 @@ class PageEditQuestion extends Page
             return false;
         }
 
-        if($this->group && $this->group->getPermission($sUser, ACTION_NEW_QUESTION) == PERMISSION_DISALLOWED)
-        {
-            $this->setError($sTemplate->getString("NOTICE_NEW_QUESTION_NO_PERMISSION"));
-            return false;
-        }
-
-
         return true;
     }
 
@@ -201,24 +194,18 @@ class PageEditQuestion extends Page
 
         foreach($tags as $k => $v)
         {
-            $sDB->exec("INSERT INTO `tags` (`tagId`, `questionId`, `tag`, `groupId`) VALUES(NULL, '".i($this->question()->questionId())."', '".mysql_real_escape_string($v)."', '".i($this->groupId)."');");
+            $sDB->exec("INSERT INTO `tags` (`tagId`, `questionId`, `tag`) VALUES(NULL, '".i($this->question()->questionId())."', '".mysql_real_escape_string($v)."');");
         }
 
-        if($this->group)
+        if($flags & QUESTION_FLAG_PART_ALL)
         {
-            $this->redirectUrl = $sTemplate->getRoot()."groups/".$this->group->url()."/".$url."/";
-        }else
-        {
-            if($flags & QUESTION_FLAG_PART_ALL)
-            {
-                $url = "unregistered/".$url;
-            }
-            if($type == QUESTION_TYPE_UNLISTED)
-            {
-                $url = "unlisted/".$url;
-            }
-            $this->redirectUrl = $sTemplate->getRoot().$url."/";
+            $url = "unregistered/".$url;
         }
+        if($type == QUESTION_TYPE_UNLISTED)
+        {
+            $url = "unlisted/".$url;
+        }
+        $this->redirectUrl = $sTemplate->getRoot().$url."/";
 
         return true;
     }

@@ -44,12 +44,6 @@ class PageDefault extends Page
         $this->tags     = Array();
         $this->sort     = SORT_TITLE;
 
-        if($this->group && $this->group->groupId() && $this->group->getPermission($sUser, ACTION_VIEW_GROUP) == PERMISSION_DISALLOWED)
-        {
-            header("Location: ".$sTemplate->getRoot());
-            exit;
-        }
-
         if(in_array($sRequest->getInt("sort"), Array(SORT_TITLE, SORT_TOP, OVERVIEW)))
         {
             $this->sort = $sRequest->getInt("sort");
@@ -159,7 +153,7 @@ class PageDefault extends Page
                 {
                     $tagString .= "+".mysql_real_escape_string($v)."* ";
                 }
-                $res = $sDB->exec("SELECT count(*) as `cnt`, `questionId` FROM `tags` WHERE MATCH(`tag`) AGAINST ('".$tagString."' IN BOOLEAN MODE) AND `groupId` = '".i($this->groupId)."' GROUP BY `questionId`;");
+                $res = $sDB->exec("SELECT count(*) as `cnt`, `questionId` FROM `tags` WHERE MATCH(`tag`) AGAINST ('".$tagString."' IN BOOLEAN MODE) GROUP BY `questionId`;");
             }else
             {
                 $tagString = "";
@@ -168,7 +162,7 @@ class PageDefault extends Page
                     $tagString .= ", '".mysql_real_escape_string($v)."'";
                 }
                 $tagString = substr($tagString, 2);
-                $res       = $sDB->exec("SELECT count(*) as `cnt`, `questionId` FROM `tags` WHERE `tag` IN (".$tagString.") AND `groupId` = '".i($this->groupId)."' GROUP BY `questionId`;");
+                $res       = $sDB->exec("SELECT count(*) as `cnt`, `questionId` FROM `tags` WHERE `tag` IN (".$tagString.") GROUP BY `questionId`;");
             }
             while($row = mysql_fetch_object($res))
             {
@@ -186,11 +180,9 @@ class PageDefault extends Page
                 $idString = "0";
             }
 
-            $qry .= " AND `groupId` = '".i($this->groupId)."' ";
             $qry .= " AND `questionId` IN (".$idString.") ";
         }else
         {
-            $qry .= " AND `groupId` = '".i($this->groupId)."' ";
         }
 
         switch($this->sort)
@@ -268,17 +260,6 @@ class PageDefault extends Page
     public function basePathNoFilter()
     {
         global $sTemplate;
-
-        if($this->groupId())
-        {
-            if($this->sort == SORT_TITLE)
-            {
-                return $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/title/";
-            }else if($this->sort == SORT_TOP)
-            {
-                return $sTemplate->getRoot()."groups/".$this->group()->url()."/tags/top/";
-            }
-        }
 
         if($this->sort == SORT_TITLE)
         {

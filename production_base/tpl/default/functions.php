@@ -195,13 +195,7 @@ function makeTags($sPage, $q, $sTemplate)
     $tags = $q->tags();
     foreach($tags as $k => $v)
     {
-        if($sPage->group() && $sPage->group()->url())
-        {
-            $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'groups/'.$sPage->group()->url().'/tags/title/'.$v.'/">'.$v.'</a></li>';
-        }else
-        {
-            $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/'.$sorting.$v.'/">'.$v.'</a></li>';
-        }
+        $ret .= '<li class = "tag"><a href = "'.$sTemplate->getRoot().'tags/'.$sorting.$v.'/">'.$v.'</a></li>';
     }
     $ret .= '</ul></div>';
     return $ret;
@@ -705,8 +699,7 @@ function drawArgumentList(Question $q, $basePath)
     if(!$sUser->isLoggedIn() && !$q->hasFlag(QUESTION_FLAG_PART_ALL))
     {
         $onClickHandler = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_NEW_ARGUMENT_NOT_LOGGED_IN")."\"); return false;";
-    }else if($sPermissions->getPermission($sUser, ACTION_NEW_ARGUMENT) == PERMISSION_DISALLOWED ||
-             ($q->group() && $q->group()->getPermission($sUser, ACTION_NEW_ARGUMENT) == PERMISSION_DISALLOWED))
+    }else if($sPermissions->getPermission($sUser, ACTION_NEW_ARGUMENT) == PERMISSION_DISALLOWED)
     {
         $onClickHandler = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_NEW_ARGUMENT_NO_PERMISSION")."\"); return false;";
     }

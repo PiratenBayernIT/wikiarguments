@@ -52,7 +52,6 @@ include("./debug.php");
 include("./question.php");
 include("./argument.php");
 include("./mail.php");
-include("./group.php");
 
 // packet handlers
 include("./packets/general.php");

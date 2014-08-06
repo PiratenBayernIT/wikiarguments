@@ -81,9 +81,6 @@ class PageProfile extends Page
         {
             $q = new Question($row->questionId, $row);
 
-            if($q->group() && $q->group()->getPermission($sUser, ACTION_VIEW_GROUP) == PERMISSION_DISALLOWED)
-            {
-            }
             array_push($qF, $q);
         }
 

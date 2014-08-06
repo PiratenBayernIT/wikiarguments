@@ -56,8 +56,7 @@ $onClick = "";
 if(!$sUser->isLoggedIn() && !$sPage->getQuestion()->hasFlag(QUESTION_FLAG_PART_ALL))
 {
     $onClick = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_NEW_ARGUMENT_NOT_LOGGED_IN")."\"); return false;";
-}else if($sPermissions->getPermission($sUser, ACTION_NEW_COUNTER_ARGUMENT) == PERMISSION_DISALLOWED ||
-         ($sPage->getQuestion()->group() && $sPage->getQuestion()->group()->getPermission($sUser, ACTION_NEW_COUNTER_ARGUMENT) == PERMISSION_DISALLOWED))
+}else if($sPermissions->getPermission($sUser, ACTION_NEW_COUNTER_ARGUMENT) == PERMISSION_DISALLOWED)
 {
     $onClick = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_NEW_COUNTER_ARGUMENT_NO_PERMISSION")."\"); return false;";
 }

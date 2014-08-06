@@ -60,21 +60,12 @@ $filterStringTitle   = "tags/title/".$filterString;
 $topActive      = false;
 $titleActive   = false;
 
-if($sTemplate->isCurrentPage('default') || $sTemplate->isCurrentPage("group"))
+if($sTemplate->isCurrentPage('default'))
 {
     $sort = $sPage->getSort();
 
     $titleActive   = $sort == SORT_TITLE;
     $topActive      = $sort == SORT_TOP;
-}
-if($sPage->group())
-{
-    if($sPage->group()->url())
-    {
-        $filterStringTrending   = "groups/".$sPage->group()->url()."/".$filterStringTrending;
-        $filterStringTop        = "groups/".$sPage->group()->url()."/".$filterStringTop;
-        $filterStringNewest     = "groups/".$sPage->group()->url()."/".$filterStringNewest;
-    }
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//<? echo strtoupper($sTemplate->getString("HTML_HEADER_META_LANG")); ?>"
@@ -111,11 +102,7 @@ if($sPage->group())
 <body>
 
 <script>
-<? if($sPage->group() && $sPage->group()->url()) { ?>
-var wikiargument = new _Wikiargument('<? echo $sPage->group()->url(); ?>', '<? echo $sUser->getUserId(); ?>');
-<? }else { ?>
-var wikiargument = new _Wikiargument('', '<? echo $sUser->getUserId(); ?>');
-<? } ?>
+var wikiargument = new _Wikiargument('<? echo $sUser->getUserId(); ?>');
 </script>
 
   <div id = "wrapper">
@@ -123,19 +110,12 @@ var wikiargument = new _Wikiargument('', '<? echo $sUser->getUserId(); ?>');
 
       <div id = "header_orange"></div>
       <div id = "header_white"></div>
-
       <div id = "header_content">
-<? if($sPage->group() && $sPage->group()->url()) { ?>
-        <a href = '<? echo $sTemplate->getRoot()."groups/".$sPage->group()->url()."/"; ?>'>
-          <div id = "header_logo_custom" style = "background: url('<? echo $sTemplate->getRoot(); ?>custom/<? echo $sPage->group()->groupId(); ?>/logo.png') no-repeat;"></div>
-        </a>
-<? }else { ?>
         <a href = '<? echo $sTemplate->getRoot(); ?>'>
           <div id = "header_logo"></div>
         </a>
         <a href="<? echo $sTemplate->getRoot(); ?>" class="header-text"><? echo $sTemplate->getString("HEADER_TEXT"); ?></a>
 <?
-   }
 
 if($sPage->getQuestion() && $sPage->getQuestion()->type() == QUESTION_TYPE_UNLISTED)
 {

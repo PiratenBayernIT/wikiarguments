@@ -89,14 +89,6 @@ $("#new_question_details_chars_left").text($(this).val().length);
 });
 }
 
-if($("#form_new_group").length>0){
-
-$("#new_group_title").bind("keyup", function(){
-
-$("#new_group_title_chars_left").text(<? echo MAX_GROUP_NAME_CHR_LENGTH;?>-$(this).val().length);
-});
-}
-
 wikiargument.enforceInputlength();
 
 });

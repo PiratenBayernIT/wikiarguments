@@ -60,41 +60,6 @@ CREATE TABLE IF NOT EXISTS `confirmation_codes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groups`
---
-
-CREATE TABLE IF NOT EXISTS `groups` (
-  `groupId` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) NOT NULL,
-  `ownerId` int(11) NOT NULL,
-  `dateAdded` bigint(20) NOT NULL,
-  `visibility` tinyint(4) NOT NULL,
-  `url` varchar(250) NOT NULL,
-  PRIMARY KEY (`groupId`),
-  UNIQUE KEY `url` (`url`),
-  KEY `title` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `group_permissions`
---
-
-CREATE TABLE IF NOT EXISTS `group_permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `groupId` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  `permission` int(11) NOT NULL,
-  `dateAdded` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `groupId` (`groupId`,`userId`),
-  KEY `userId` (`userId`,`permission`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `localization`
 --
 
@@ -259,18 +224,6 @@ CREATE TABLE IF NOT EXISTS `user_factions` (
   KEY `questionId` (`questionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_groups`
---
-
-CREATE TABLE IF NOT EXISTS `user_groups` (
-  `userId` int(11) NOT NULL,
-  `groupId` int(11) NOT NULL,
-  `dateAdded` bigint(20) NOT NULL,
-  UNIQUE KEY `userId` (`userId`,`groupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
