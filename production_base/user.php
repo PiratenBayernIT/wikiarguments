@@ -103,6 +103,8 @@ class User
         $this->userId           = $userId;
         $this->userName         = $row->userName;
         $this->email            = $row->email;
+        $this->entitled         = $row->entitled;
+        $this->verified         = $row->verified;
         $this->password         = $row->password;
         $this->salt             = $row->salt;
         $this->dateAdded        = $row->dateAdded;
@@ -157,6 +159,21 @@ class User
             return "XXXXX";
         }
         return $this->userName;
+    }
+
+    public function getUserStatus()
+    {
+	if (!$this->entitled && !$this->verified) {
+	    return 'Du bist derzeit weder stimmberechtigt noch verifiziert';
+	} else 
+	if (!$this->entitled && $this->verified) {
+	    return 'Du bist derzeit verifiziert, aber nicht stimmberechtigt';
+	} else
+	if ($this->entitled && !$this->verified) {
+	    return 'Du bist derzeit stimmberechtigt, aber nicht verifiziert';
+	} else {
+	    return 'Du bist derzeit stimmberechtigt und verifiziert';
+	}
     }
 
     public function getUserId()
@@ -576,6 +593,8 @@ class User
     private $isLoggedIn;
     private $userId;
     private $userName;
+    private $entitled;
+    private $verified;
     private $email;
     private $password;
     private $salt;

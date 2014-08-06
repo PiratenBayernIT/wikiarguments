@@ -33,50 +33,46 @@
  *******************************************************************************/
 
 global $sTemplate, $sUser, $sDB, $sPacket, $sPage;
+
+$page       = "";
+$language   = $sTemplate->getLangBase();
 ?>
 <? include($sTemplate->getTemplateRootAbs()."header.php"); ?>
 
 <div id = "content_wide">
   <div class = "thin">
-    <div class = "sponsors">
+  <div class = "login">
+    <form id = "form_login" action = "<? echo $sTemplate->getRoot(); ?>login/" method = "POST">
       <div class = "row">
-        <div class = "headline"><? echo $sTemplate->getString("SPONSORS_HEADLINE"); ?></div>
+        <div class = "headline"><? echo $sTemplate->getString("LOGIN_HEADLINE"); ?></div>
       </div>
-      <div class = "row seperator_no_border">
+      <div class = "row" style = "margin-top: 35px;">
+        <div class = "label"><? echo $sTemplate->getString("LOGIN_USERNAME"); ?></div>
+        <div class = "input">
+          <input type = "text" id = "login_username" name = "login_username"></input>
+        </div>
       </div>
 
-      <div class = "sponsors_container">
-<?
-$sponsors = $sPage->getSponsors();
-foreach($sponsors as $k => $v)
-{
-    $dat = sponsorData($v);
-?>
-        <div class = "sponsor">
-          <a href = '<? echo $v->url; ?>' target = "_BLANK">
-            <div class = "logo" style = "margin-top: <? echo $dat->marginTop; ?>px; margin-bottom: <? echo $dat->marginBottom; ?>px; margin-left: <? echo $dat->marginLeft; ?>px; width: <? echo $dat->logoWidth; ?>px; height: <?echo $dat->logoHeight; ?>px; background: url('<? echo $sTemplate->getSponsorLogosRoot().$dat->file; ?>.png');"></div>
-            <div class = "title"><? echo htmlspecialchars($v->title); ?></div>
-          </a>
-          <div class = "seperator"></div>
-          <div class = "amount"><? echo $sTemplate->getString("SPONSOR_AMOUNT", Array("[AMOUNT]"), Array($v->amount)); ?></div>
+      <div class = "row">
+        <div class = "label"><? echo $sTemplate->getString("LOGIN_PASSWORD"); ?></div>
+        <div class = "input">
+          <input type = "password" id = "login_password" name = "login_password"></input>
         </div>
-<?
-}
-?>
-        <a href = "<? echo $sTemplate->getRoot(); ?>become-sponsor/">
-          <div class = "sponsor become_sponsor">
-            <div class = "title"><? echo $sTemplate->getString("BECOME_SPONSOR"); ?></div>
-          </div>
-        </a>
-        <div class = "clear"></div>
       </div>
-      <div class = "row seperator_no_border">
+
+      <div class = "row row_submit">
+        <button class = "button_blue" onclick = "$('#form_login').submit();"><? echo $sTemplate->getString("LOGIN_SUBMIT"); ?></button>
+        <span class = "button_blue" onclick = "wikiargument.passRequest(); return false;"><? echo $sTemplate->getString("LOGIN_FORGOT_PASSWORD"); ?></span>
       </div>
-    <div id = "content_sponsors">
-    <? echo $sTemplate->getString("SPONSORS_TEXT"); ?>
-   </div>
-    </div>
+
+      <input type = "hidden" name = "login" id = "login_mode_login" value = "1" />
+      <input type = "hidden" name = "passRequest" id = "login_mode_passRequest" value = "0" />
+    </form>
   </div>
+
+  <div class = "clear"></div>
+  </div>
+
 </div>
 
 <? include($sTemplate->getTemplateRootAbs()."footer.php"); ?>

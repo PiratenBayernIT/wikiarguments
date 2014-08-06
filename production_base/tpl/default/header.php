@@ -153,6 +153,7 @@ if($sPage->getQuestion() && $sPage->getQuestion()->type() == QUESTION_TYPE_UNLIS
 ?>
 
         <div id = "header_navigation">
+        <? echo htmlspecialchars($sUser->getUserStatus()); ?>
           <div class = "navi_point title <? echo $titleActive ? "current_page" : "";?>">
             <a href = '<? echo $sTemplate->getRoot(); ?><? echo $filterStringTitle; ?>'><? echo $sTemplate->getString("NAVIGATION_TITLE"); ?></a>
           </div>
