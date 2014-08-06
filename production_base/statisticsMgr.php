@@ -270,7 +270,7 @@ class StatisticsMgr
         {
             $user = $sUser;
             if(!$sUser->isLoggedIn() &&
-               ($question->type() != QUESTION_TYPE_UNLISTED || !($question->hasFlag(QUESTION_FLAG_PART_ALL))))
+               ($question->type() != QUESTION_TYPE_UNLISTED))
             {
                 return false;
             }
@@ -281,67 +281,28 @@ class StatisticsMgr
             return false;
         }
 
+        if(!$argumentId && !$user->isEntitled()) {
+             return false;
+        }
+
         if($sPermissions->getPermission($user, ACTION_VOTE) == PERMISSION_DISALLOWED)
         {
             return false;
         }
 
-        $cookieData = false;
         if(!$user->isLoggedIn())
         {
-            $cookieData = $_COOKIE['voteData'];
-            if($cookieData)
-            {
-                $cookieData = unserialize($cookieData);
-                if(is_array($cookieData))
-                {
-                    if(is_array($cookieData[$questionId]))
-                    {
-                        if($cookieData[$questionId][$argumentId])
-                        {
-                            validateVote($cookieData[$questionId][$argumentId]);
-                        }
-                    }else
-                    {
-                        $cookieData[$questionId] = Array();
-                    }
-                }else
-                {
-                    $cookieData = Array();
-                    $cookieData[$questionId] = Array();
-                }
-            }else
-            {
-                $cookieData = Array();
-                $cookieData[$questionId] = Array();
-            }
+            return false;
         }
 
-        if($user->isLoggedIn())
-        {
-            $this->lazyUpdateUserStats($questionId, $argumentId, $vote, $user->getUserId());
+        $this->lazyUpdateUserStats($questionId, $argumentId, $vote, $user->getUserId());
 
-            $sDB->exec("DELETE FROM `user_votes` WHERE `userId` = '".i($user->getUserId())."' AND `questionId` = '".i($questionId)."' AND `argumentId` = '".i($argumentId)."';");
-        }else
-        {
-            // check if a vote state exists in the user's cookie
-            if($cookieData[$questionId][$argumentId])
-            {
-                validateVote($cookieData[$questionId][$argumentId]);
-                $sDB->exec("DELETE FROM `user_votes` WHERE `userId` = '".i($user->getUserId())."' AND `questionId` = '".i($questionId)."' AND `argumentId` = '".i($argumentId)."' LIMIT 1;");
-                unset($cookieData[$questionId]);
-            }
-        }
+        $sDB->exec("DELETE FROM `user_votes` WHERE `userId` = '".i($user->getUserId())."' AND `questionId` = '".i($questionId)."' AND `argumentId` = '".i($argumentId)."';");
 
         if($vote != VOTE_NONE)
         {
             $sDB->exec("INSERT INTO `user_votes` (`voteId`, `userId`, `questionId`, `argumentId`, `vote`, `dateAdded`)
                         VALUES (NULL, '".i($user->getUserId())."', '".i($questionId)."', '".i($argumentId)."', '".i($vote)."', '".time()."');");
-
-            if(!$user->isLoggedIn())
-            {
-                $cookieData[$questionId][$argumentId] = $vote;
-            }
         }
 
         if ($argumentId)
@@ -350,11 +311,6 @@ class StatisticsMgr
         } else
         {
             $this->updateQuestionStats($questionId);
-        }
-
-        if(!$user->isLoggedIn())
-        {
-            setcookie("voteData", serialize($cookieData));
         }
 
         return true;

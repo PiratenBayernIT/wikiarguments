@@ -149,7 +149,7 @@ class CmsgVote extends PacketHandler
 
         // user login state
         if(!$sUser->isLoggedIn() &&
-           ($question->type() != QUESTION_TYPE_UNLISTED || !($question->flags() & QUESTION_FLAG_PART_ALL)))
+           ($question->type() != QUESTION_TYPE_UNLISTED))
         {
             $response->data->error = $sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN");
             return false;

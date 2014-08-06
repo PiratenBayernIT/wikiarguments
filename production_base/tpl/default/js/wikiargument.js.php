@@ -257,30 +257,6 @@ _Wikiargument.prototype.changeQuestionType = function()
     }
 };
 
-_Wikiargument.prototype.changeQuestionFlags = function()
-{
-    var val = $('#new_question_flags').val();
-    if(val == <? echo QUESTION_FLAG_PART_ALL; ?>)
-    {
-        $('#row_question_unlisted_manipulation').show();
-    }else
-    {
-        $('#row_question_unlisted_manipulation').hide();
-    }
-};
-
-_Wikiargument.prototype.newSponsorUpdatePaymentData = function()
-{
-    var val = $('#sponsor_payment_method').val();
-    if(val == <? echo PAYMENT_METHOD_ELV; ?>)
-    {
-        $('#new_sponsor_elv').show();
-    }else
-    {
-        $('#new_sponsor_elv').hide();
-    }
-};
-
 _Wikiargument.prototype.initSpellcheck = function(field, button, language)
 {
     var sclang = "Deutsch";

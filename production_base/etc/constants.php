@@ -93,8 +93,6 @@ define("VISIBILITY_PRIVATE",            2);
 define("QUESTION_TYPE_LISTED",          0);
 define("QUESTION_TYPE_UNLISTED",        1);
 
-define("QUESTION_FLAG_PART_ALL",        2);
-
 define("DATABASE_DEFAULT",              0);
 define("DATABASE_USERS",                1);
 define("DATABASE_LOCALIZATION",         2);

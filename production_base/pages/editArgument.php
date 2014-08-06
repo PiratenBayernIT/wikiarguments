@@ -108,7 +108,7 @@ class PageEditArgument extends Page
             return false;
         }
 
-        if(!$sUser->isLoggedIn() && !$this->question->hasFlag(QUESTION_FLAG_PART_ALL))
+        if(!$sUser->isLoggedIn())
         {
             $this->setError($sTemplate->getString("ERROR_NOT_LOGGED_IN"));
             return false;
@@ -141,7 +141,7 @@ class PageEditArgument extends Page
     {
         global $sRequest, $sTemplate, $sUser, $sPermissions;
 
-        if((!$sUser->isLoggedIn() && !$this->question->hasFlag(QUESTION_FLAG_PART_ALL)) ||
+        if(!$sUser->isLoggedIn() ||
             $sPermissions->getPermission($sUser, ACTION_NEW_ARGUMENT) == PERMISSION_DISALLOWED)
         {
             return false;

@@ -53,7 +53,7 @@ echo drawCounterArguments($sPage->getQuestion(), $sPage->getArgument(), $sPage->
 
 <?
 $onClick = "";
-if(!$sUser->isLoggedIn() && !$sPage->getQuestion()->hasFlag(QUESTION_FLAG_PART_ALL))
+if(!$sUser->isLoggedIn())
 {
     $onClick = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_NEW_ARGUMENT_NOT_LOGGED_IN")."\"); return false;";
 }else if($sPermissions->getPermission($sUser, ACTION_NEW_COUNTER_ARGUMENT) == PERMISSION_DISALLOWED)

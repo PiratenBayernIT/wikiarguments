@@ -66,10 +66,6 @@ class Question
         $this->type           = $row->type;
         $this->flags          = $row->flags;
 
-        if($this->hasFlag(QUESTION_FLAG_PART_ALL))
-        {
-            $this->url = "unregistered/".$this->url;
-        }
         if($this->type == QUESTION_TYPE_UNLISTED)
         {
             $this->url = "unlisted/".$this->url;

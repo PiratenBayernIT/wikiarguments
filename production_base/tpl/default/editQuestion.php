@@ -90,16 +90,6 @@ foreach($sPage->question()->tags() as $k => $v)
           </div>
         </div>
 
-        <div class = "row" id = "row_question_flags" style = "<? echo $sPage->question()->type() == QUESTION_TYPE_LISTED ? 'display: none;' : ''; ?>">
-          <div class = "label2"><? echo $sTemplate->getString("NEW_QUESTION_FLAGS"); ?></div>
-          <div class = "input">
-            <select name = "new_question_flags" id = "new_question_flags" onchange = "wikiargument.changeQuestionType();">
-              <option value = "0" <? echo $sPage->question()->hasFlag(QUESTION_FLAG_PART_ALL) ? '' : ' selected'; ?>><? echo $sTemplate->getString("PARTICIPATION_ONLY_REGISTERED"); ?></option>
-              <option value = "<? echo QUESTION_FLAG_PART_ALL; ?>" <? echo $sPage->question()->hasFlag(QUESTION_FLAG_PART_ALL) ? ' selected' : ''; ?>><? echo $sTemplate->getString("PARTICIPATION_ALL"); ?></option>
-            </select>
-          </div>
-        </div>
-
         <div class = "row row_submit">
             <span class = "button_orange" onclick = "$('#form_edit_question').submit(); $(this).attr('disabled','disabled'); return false;"><? echo $sTemplate->getString("SUBMIT_NEW_QUESTION"); ?></span>
         </div>

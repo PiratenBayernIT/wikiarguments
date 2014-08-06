@@ -122,12 +122,6 @@ if($sPage->getQuestion() && $sPage->getQuestion()->type() == QUESTION_TYPE_UNLIS
 ?>
     <div id = "header_logo_unlisted"></div>
 <?
-    if($sPage->getQuestion()->hasFlag(QUESTION_FLAG_PART_ALL))
-    {
-?>
-    <div id = "header_logo_unlisted_not_logged_in"></div>
-<?
-    }
 }
 
 ?>

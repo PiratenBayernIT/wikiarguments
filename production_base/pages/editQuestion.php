@@ -197,10 +197,6 @@ class PageEditQuestion extends Page
             $sDB->exec("INSERT INTO `tags` (`tagId`, `questionId`, `tag`) VALUES(NULL, '".i($this->question()->questionId())."', '".mysql_real_escape_string($v)."');");
         }
 
-        if($flags & QUESTION_FLAG_PART_ALL)
-        {
-            $url = "unregistered/".$url;
-        }
         if($type == QUESTION_TYPE_UNLISTED)
         {
             $url = "unlisted/".$url;

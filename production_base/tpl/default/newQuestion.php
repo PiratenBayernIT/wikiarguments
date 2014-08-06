@@ -88,16 +88,6 @@ $language   = $sTemplate->getLangBase();
           </div>
         </div>
 
-        <div class = "row" id = "row_question_flags" style = "display: none;">
-          <div class = "label2"><? echo $sTemplate->getString("NEW_QUESTION_FLAGS"); ?></div>
-          <div class = "input">
-            <select name = "new_question_flags" id = "new_question_flags" onchange = "wikiargument.changeQuestionFlags();">
-              <option value = "0" selected><? echo $sTemplate->getString("PARTICIPATION_ONLY_REGISTERED"); ?></option>
-              <option value = "<? echo QUESTION_FLAG_PART_ALL; ?>"><? echo $sTemplate->getString("PARTICIPATION_ALL"); ?></option>
-            </select>
-          </div>
-        </div>
-
         <div class = "row" id = "row_question_unlisted_manipulation" style = "display: none;">
           <? echo $sTemplate->getString("NOTICE_NEW_QUESTION_UNLISTED_MANIPULATION"); ?>
         </div>

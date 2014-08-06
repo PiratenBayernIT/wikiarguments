@@ -187,18 +187,6 @@ class User
 
         if(!$this->isLoggedIn())
         {
-            // check if a vote state exists in the user's cookie
-            $factionData = $_COOKIE['factionData'];
-            if($factionData)
-            {
-                $factionData = unserialize($factionData);
-                if(is_array($factionData) && $factionData[$questionId])
-                {
-                    validateFaction($factionData[$questionId]);
-                    return $factionData[$questionId];
-                }
-                return FACTION_NONE;
-            }
             return FACTION_NONE;
         }
 
@@ -237,49 +225,6 @@ class User
             {
                 $sStatistics->vote($question, $row->argumentId, VOTE_NONE, $this, true);
             }
-        }else
-        {
-            $oldFaction  = FACTION_NONE;
-            $factionData = $_COOKIE['factionData'];
-            if($factionData)
-            {
-                $factionData = unserialize($factionData);
-                if(is_array($factionData) && $factionData[$questionId])
-                {
-                    validateFaction($factionData[$questionId]);
-                    $oldFaction = $factionData[$questionId];
-                }
-            }
-
-            // remove old faction
-            if($oldFaction != FACTION_NONE)
-            {
-                $sDB->exec("DELETE FROM `user_factions` WHERE `userId` = '".$this->getUserId()."' AND `questionId` = '".i($questionId)."' AND `state` = '".$oldFaction."';");
-
-                unset($factionData[$questionId]);
-            }
-
-            // check if a vote state exists in the user's cookie
-            if(isset($_COOKIE['voteData']))
-            {
-                $cookieData = unserialize($_COOKIE['voteData']);
-                if(is_array($cookieData) && is_array($cookieData[$questionId]))
-                {
-                    foreach($cookieData[$questionId] as $k => $v)
-                    {
-                        validateVote($v);
-                        $sStatistics->vote($question, $k, VOTE_NONE, $this, true);
-                    }
-                    unset($cookieData[$questionId]);
-                }
-                setcookie("voteData", serialize($cookieData));
-            }
-
-            if($faction != FACTION_NONE)
-            {
-                $factionData[$questionId] = $faction;
-            }
-            setcookie("factionData", serialize($factionData));
         }
 
         if($faction == FACTION_NONE)
@@ -311,18 +256,6 @@ class User
 
         if(!$this->isLoggedIn())
         {
-            // check if a vote state exists in the user's cookie
-            $cookieData = $_COOKIE['voteData'];
-            if($cookieData)
-            {
-                $cookieData = unserialize($cookieData);
-                if(is_array($cookieData) && $cookieData[$questionId] && $cookieData[$questionId][$argumentId])
-                {
-                    validateVote($cookieData[$questionId][$argumentId]);
-                    return $cookieData[$questionId][$argumentId];
-                }
-                return VOTE_NONE;
-            }
             return VOTE_NONE;
         }
 

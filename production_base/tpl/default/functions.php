@@ -152,7 +152,7 @@ function voteDn($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF, 
     $onSubmit = "";
 
     if(!$sUser->isLoggedIn() &&
-       ($questionType != QUESTION_TYPE_UNLISTED || !($questionFlags & QUESTION_FLAG_PART_ALL)))
+       ($questionType != QUESTION_TYPE_UNLISTED))
     {
         $canVote  = false;
         $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN")."\"); return false;";
@@ -534,7 +534,7 @@ function drawQuestionDistribution(Question $q)
 
     $onSubmit = "";
     if(!$sUser->isLoggedIn() &&
-       ($q->type() != QUESTION_TYPE_UNLISTED || !($q->hasFlag(QUESTION_FLAG_PART_ALL))))
+       ($q->type() != QUESTION_TYPE_UNLISTED))
     {
         $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_CHECKIN_NOT_LOGGED_IN")."\"); return false;";
     }
@@ -696,7 +696,7 @@ function drawArgumentList(Question $q, $basePath)
 
     $faction = $sUser->getFactionByQuestionId($q->questionId());
     $onClickHandler = "";
-    if(!$sUser->isLoggedIn() && !$q->hasFlag(QUESTION_FLAG_PART_ALL))
+    if(!$sUser->isLoggedIn())
     {
         $onClickHandler = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_NEW_ARGUMENT_NOT_LOGGED_IN")."\"); return false;";
     }else if($sPermissions->getPermission($sUser, ACTION_NEW_ARGUMENT) == PERMISSION_DISALLOWED)

@@ -230,18 +230,6 @@ function validateQuestionType($type, $redirect = true)
 
 function validateQuestionFlags($flags, $redirect = true)
 {
-    global $sTemplate;
-
-    if($flags < 0 || $flags > 2)
-    {
-        if($redirect)
-        {
-            $sTemplate->error($sTemplate->getString("ERROR_INVALID_QUESTION_FLAGS"));
-        }
-
-        return false;
-    }
-
     return true;
 }
 
