@@ -73,7 +73,6 @@ wikiargument.raiseNotice("<? echo $notice; ?>");
         </div>
         <div id = "footer_menu" style = "display: none;">
           <? echo $sTemplate->getString("FOOTER_OPEN_SOURCE"); ?> |
-          <? echo $sTemplate->getString("CHANGELOG_URL"); ?><? echo $sTemplate->getString("FOOTER_CHANGELOG"); ?></a> |
           <? echo $sTemplate->getString("FOOTER_TOS"); ?> |
         </div>
         <div id="footer_socials">
