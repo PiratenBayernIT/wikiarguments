@@ -552,8 +552,8 @@ function drawArgument(Question $q, Argument $a, $basePath, $abstract = true)
     <div class = "stats argument_stats">
       <div class = "points argument_points" id = "points_text_'.$q->questionId().'_'.$a->argumentId().'">'.$numPoints.'</div>
       <div class = "points_text argument_points_text">'.$sTemplate->getStringNumber("ARGUMENT_POINTS", Array(), Array(), $numPoints).'</div>
-      '.voteUp('argument_vote_up', $a->questionId(), $a->argumentId(), $a->type(), $q->type(), $q->flags()).'
-      '.voteDn('argument_vote_dn', $a->questionId(), $a->argumentId(), $a->type(), $q->type(), $q->flags()).'
+      '.voteUp('argument_vote_up', $a->questionId(), $a->argumentId(), $a->type(), $q->type()).'
+      '.voteDn('argument_vote_dn', $a->questionId(), $a->argumentId(), $a->type(), $q->type()).'
     </div>';
 
     if($a->details())
@@ -696,8 +696,8 @@ function drawArgumentBoxFull(Question $q, Argument $a, $basePath)
   <div class = "stats question_stats">
     <div class = "points question_points" id = "points_text_'.$q->questionId().'_'.$argumentId.'">'.$numPoints.'</div>
     <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("QUESTION_POINTS", Array(), Array(), $numPoints).'</div>
-    '.voteUp('argument_vote_up', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
-    '.voteDn('argument_vote_dn', $q->questionId(), $argumentId, $a->type(), $q->type(), $q->flags()).'
+    '.voteUp('argument_vote_up', $q->questionId(), $argumentId, $a->type(), $q->type()).'
+    '.voteDn('argument_vote_dn', $q->questionId(), $argumentId, $a->type(), $q->type()).'
   </div>
   <div class = "argument_title"><a href = "'.$a->url($basePath).'">'.$a->headline().'</a></div>';
 
