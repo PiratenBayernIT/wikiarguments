@@ -83,6 +83,12 @@ a {
   color: #004c83
 }
 
+hr { 
+  background-color: #B5B5B5; 
+  color: #B5B5B5; 
+  height: 1px; border: 0; 
+}
+
 #header {
   box-shadow: 3px 0 6px 3px #DDDDDD;
   -moz-box-shadow: 3px 0 6px 3px #DDDDDD;
