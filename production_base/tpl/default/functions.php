@@ -229,11 +229,10 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
 
     if($appendTags) $ret .= makeTags($sPage, $q, $sTemplate);
 
-    $ret .= '<hr style="border-color: #B5B5B5;">';    
-
     if($appendDetails)
     {
         $ret .= '
+  <hr> 
   <div class = "question_details">
     <a href=#arguments class="button_orange" style="width:180px;">'.$sTemplate->getString("QUESTION_GOTO_ARGUMENTS").'</a>
 '.$q->details().'</div>
