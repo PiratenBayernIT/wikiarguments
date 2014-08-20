@@ -73,6 +73,7 @@ class StatisticsMgr
     {
         global $sDB, $sTimer;
 
+        error_log("update question stats for question $questionId");
         $sTimer->start("updateQuestionStats");
 
         $res = $sDB->exec("SELECT * FROM `questions` WHERE `questionId` = '".i($questionId)."' LIMIT 1;");
@@ -113,7 +114,6 @@ class StatisticsMgr
 
         $sTimer->start("updateQuestionScore");
 
-
         $res = $sDB->exec("SELECT * FROM `questions` WHERE `questionId` = '".i($questionId)."' LIMIT 1;");
         if(!mysql_num_rows($res))
         {
@@ -132,6 +132,10 @@ class StatisticsMgr
         $score          = $score - $num[VOTE_DN];
         $scoreTop       = $score;
         $scoreTrending  = $this->trendingScore($score, $q->dateAdded);
+
+        $oldScore = $q->score;
+        error_log("update question score for $questionId: $oldScore -> $score");
+
 
         $sDB->exec("UPDATE `questions` SET `score` = '".i($score)."', `scoreTrending` = '".i($scoreTrending)."', `scoreTop` = '".i($scoreTop)."' WHERE `questionId` = '".i($questionId)."' LIMIT 1;");
 
