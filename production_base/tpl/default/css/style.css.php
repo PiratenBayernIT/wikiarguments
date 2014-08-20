@@ -1521,6 +1521,13 @@ clear:both;}
   padding-bottom: 10px;
 }
 
+.row_followed_q .question_vote_up {
+    position: relative;
+    float: left;
+    left: 0px;
+    margin-right: 10px;
+}
+
 .row_followed_q_title {
   padding-top: 10px;
   padding-bottom: 10px;

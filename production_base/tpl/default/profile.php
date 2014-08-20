@@ -64,12 +64,15 @@ $fQ         = $sPage->getFollowedQuestions();
         <div class = "row seperator">
         </div>
         <div class = "followed_questions">
+        <h2>Fragen, denen <? echo $user->getUserName(); ?> folgt</h2>
 <?
 foreach($fQ as $k => $q)
 {
 ?>
           <div class = "row_no_padding row_followed_q" id = "profile_question_<? echo $q->questionId(); ?>">
-<? if($sPage->getUserId() == $sUser->getUserId()) { ?>
+<? if($sPage->getUserId() == $sUser->getUserId()) { 
+            echo showVoteState($q->questionId());
+?>
             <span class = "button_blue" onclick = "wikiargument.unfollow('<? echo $q->questionId(); ?>', function(resp) { if(resp.data.result == 1) {$('#profile_question_<? echo $q->questionId(); ?>').hide(); } });" style = "float: right;">
               <? echo $sTemplate->getString("SUBMIT_UNFOLLOW_QUESTION"); ?>
             </span>
