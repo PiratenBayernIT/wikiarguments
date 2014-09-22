@@ -45,7 +45,6 @@ class PageNewCounterArgument extends Page
         $this->view     = VIEW_NEW_COUNTER_ARGUMENT;
         $this->argument = false;
         $this->faction  = $sRequest->getInt("faction");
-        validateFaction($this->faction);
 
         $res = $sDB->exec("SELECT * FROM `questions` WHERE `url` = '".mysql_real_escape_string($questionTitle)."' LIMIT 1;");
         while($row = mysql_fetch_object($res))

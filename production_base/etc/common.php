@@ -456,4 +456,20 @@ function url_sanitize($url)
 
     return $url;
 }
+
+function complementFaction($faction)
+{
+    if($faction == FACTION_PRO)
+    {
+        return FACTION_CON;
+    }else if($faction == FACTION_CON)
+    {
+        return FACTION_PRO;
+    }
+
+    return FACTION_NONE;
+}
+
+
+
 ?>
