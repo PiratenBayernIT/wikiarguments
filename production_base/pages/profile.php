@@ -74,9 +74,12 @@ class PageProfile extends Page
 
         $qF = Array();
 
-        $res = $sDB->exec("SELECT `questions`.*, vote FROM `notifications`
+        $res = $sDB->exec("SELECT `questions`.* FROM `notifications`
                           LEFT JOIN `questions` ON `questions`.questionId = `notifications`.`questionId`
-                          WHERE `notifications`.`userId` = '".$this->userId."' ORDER BY vote DESC, `title`;");
+                          LEFT JOIN `user_votes` ON questions.questionId = user_votes.questionId
+                          WHERE `notifications`.`userId` = '".$this->userId."'
+                          GROUP BY questions.questionId
+                          ORDER BY argumentId, vote DESC;");
         while($row = mysql_fetch_object($res))
         {
             $q = new Question($row->questionId, $row);
