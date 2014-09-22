@@ -628,7 +628,7 @@ function drawArgumentList(Question $q, $basePath)
     $content .= "
     <a href = '".$q->urlNewArgument(true)."' onclick = '".$onClickHandler."'>
       <div class = 'button_argument button_new_argument_pro'><span>
-        ".$sTemplate->getString("NEW_ARGUMENT")."</span>
+        ".$sTemplate->getString("NEW_ARGUMENT_PRO")."</span>
       </div>
     </a>";
 
@@ -644,7 +644,7 @@ function drawArgumentList(Question $q, $basePath)
     $content .= "
     <a href = '".$q->urlNewArgument(false)."' onclick = '".$onClickHandler."'>
       <div class = 'button_argument button_new_argument_con'><span>
-        ".$sTemplate->getString("NEW_ARGUMENT")."</span>
+        ".$sTemplate->getString("NEW_ARGUMENT_CONTRA")."</span>
       </div>
     </a>";
 

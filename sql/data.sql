@@ -132,6 +132,8 @@ INSERT INTO `localization` (`loc_key`, `loc_language`, `loc_val`) VALUES
 ('NAVIGATION_TOP', 'de', 'Top'),
 ('NAVIGATION_WHATS_HOT', 'de', 'Im Trend'),
 ('NEW_ARGUMENT', 'de', 'Argument hinzufügen'),
+('NEW_ARGUMENT_PRO', 'de', 'Pro-Argument hinzufügen'),
+('NEW_ARGUMENT_CONTRA', 'de', 'Contra-Argument hinzufügen'),
 ('NEW_ARGUMENT_ABSTRACT', 'de', 'Argument'),
 ('NEW_ARGUMENT_DETAILS', 'de', 'Argument </br>Details'),
 ('NEW_ARGUMENT_HEADLINE', 'de', 'Überschrift'),
