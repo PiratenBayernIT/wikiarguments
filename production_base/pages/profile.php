@@ -76,7 +76,6 @@ class PageProfile extends Page
 
         $res = $sDB->exec("SELECT `questions`.*, vote FROM `notifications`
                           LEFT JOIN `questions` ON `questions`.questionId = `notifications`.`questionId`
-                          LEFT JOIN `user_votes` ON questions.questionId = user_votes.questionId
                           WHERE `notifications`.`userId` = '".$this->userId."' ORDER BY vote DESC, `title`;");
         while($row = mysql_fetch_object($res))
         {

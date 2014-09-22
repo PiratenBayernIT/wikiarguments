@@ -85,7 +85,6 @@ if($sTemplate->isCurrentPage('default'))
 
   <script type='text/javascript' src='<? echo $sTemplate->getTemplateRoot(); ?>js/jquery.min.js'></script>
   <script type='text/javascript' src='<? echo $sTemplate->getTemplateRoot(); ?>js/jquery-ui.min.js'></script>
-  <script type='text/javascript' src='<? echo $sTemplate->getTemplateRoot(); ?>js/jquery.jlabel-1.3.min.js'></script>
   <script type='text/javascript' src='<? echo $sTemplate->getTemplateRoot(); ?>js/jquery.fancynotification.js'></script>
   <script type='text/javascript' src='<? echo $sTemplate->getTemplateRoot(); ?>js/jquery.json.js'></script>
   <script type='text/javascript' src='<? echo $sTemplate->getTemplateRoot(); ?>js/wikiargument.js.php'></script>
