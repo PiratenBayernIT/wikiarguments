@@ -42,7 +42,7 @@ class PageProfile extends Page
         $this->userId = $sRequest->getInt("userId");
         $this->user   = $sQuery->getUser("userId=".$this->userId);
 
-        if(!$this->user)
+        if($this->user != $sUser)
         {
             $sTemplate->error($sTemplate->getString("ERROR_INVALID_PROFILE"));
         }

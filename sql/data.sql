@@ -38,7 +38,7 @@ INSERT INTO `localization` (`loc_key`, `loc_language`, `loc_val`) VALUES
 ('ERROR_FOLLOW_NOT_LOGGED_IN', 'de', 'Du musst eingeloggt sein um diese Aktion durchzuführen.'),
 ('ERROR_INVALID_ARGUMENT', 'de', 'ERROR_INVALID_ARGUMENT'),
 ('ERROR_INVALID_PERMISSIONS', 'de', 'Ungültige Rechte.'),
-('ERROR_INVALID_PROFILE', 'de', 'ERROR_INVALID_PROFILE'),
+('ERROR_INVALID_PROFILE', 'de', 'Kein Zugriff'),
 ('ERROR_INVALID_QUESTION', 'de', 'Ungültige Frage.'),
 ('ERROR_INVALID_QUESTION_FLAGS', 'de', 'Ungültige Flags'),
 ('ERROR_INVALID_QUESTION_TYPE', 'de', 'Ungültiger Type'),
