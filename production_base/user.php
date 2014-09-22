@@ -163,17 +163,18 @@ class User
 
     public function getUserStatus()
     {
-	if (!$this->entitled && !$this->verified) {
-	    return 'Du bist derzeit weder stimmberechtigt noch verifiziert';
-	} else 
-	if (!$this->entitled && $this->verified) {
-	    return 'Du bist derzeit verifiziert, aber nicht stimmberechtigt';
-	} else
-	if ($this->entitled && !$this->verified) {
-	    return 'Du bist derzeit stimmberechtigt, aber nicht verifiziert';
-	} else {
-	    return 'Du bist derzeit stimmberechtigt und verifiziert';
-	}
+    global $sTemplate;
+        if (!$this->entitled && !$this->verified) {
+            return $sTemplate->getString("NOT_VERIFIED_NOT_ENTITLED");
+        } else 
+        if (!$this->entitled && $this->verified) {
+            return $sTemplate->getString("VERIFIED_NOT_ENTITLED") . " " . $this->verified;
+        } else
+        if ($this->entitled && !$this->verified) {
+            return $sTemplate->getString("NOT_VERIFIED_ENTITLED");
+        } else {
+            return $sTemplate->getString("VERIFIED_ENTITLED") . " " . $this->verified;
+        }
     }
 
     public function getUserId()
@@ -365,6 +366,7 @@ class User
         {
             return false;
         }
+        
 
         $sDB->exec("INSERT INTO `notifications` (`notificationId`, `userId`, `questionId`, `flags`, `dateAdded`) VALUES
                                                 (NULL, '".i($this->getUserId())."', '".i($qId)."', '0', '".i(time())."')");
