@@ -244,7 +244,7 @@ function drawQuestionBoxRaw(Question $q, $tabs = "", $appendDetails = false, $ap
         $ret .= '<div class = "author question_author" style="display:none"><a href = "'.$q->url().'edit/">'.$sTemplate->getString("QUESTION_EDIT", Array("[TIMELEFT]"), Array($q->timeLeftEdit())).'</a></div>';
     }else
     {
-        $ret .= '<div class = "author question_author" style="display:none">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($q->timeSince(), $q->authorLink())).'</div>';
+        $ret .= '<div class = "author question_author" style="display:none">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($q->timeSince(), $q->author())).'</div>';
     }
 
     $ret .= '
@@ -393,7 +393,7 @@ function drawArgumentBoxRaw(Question $q, $tabs, Argument $a, $basePath, $abstrac
         $ret .= '<div class = "author question_author"><a href = "'.$a->url($basePath).'edit/">'.$sTemplate->getString("ARGUMENT_EDIT", Array("[TIMELEFT]"), Array($a->timeLeftEdit())).'</a></div>';
     }else
     {
-        $ret .= '<div class = "author question_author">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($a->timeSince(), $a->authorLink())).'</div>';
+        $ret .= '<div class = "author question_author">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($a->timeSince(), $a->author())).'</div>';
     }
 
     $ret .= '
@@ -591,7 +591,7 @@ function drawArgument(Question $q, Argument $a, $basePath, $abstract = true)
         $content .= '<div class = "author question_author"><a href = "'.$a->url($basePath).'edit/">'.$sTemplate->getString("ARGUMENT_EDIT", Array("[TIMELEFT]"), Array($a->timeLeftEdit())).'</a></div>';
     }else
     {
-        $content .= '<div class = "author question_author">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($a->timeSince(), $a->authorLink())).'</div>';
+        $content .= '<div class = "author question_author">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($a->timeSince(), $a->author())).'</div>';
     }
 
     $content .= '
@@ -711,7 +711,7 @@ function drawArgumentBoxFull(Question $q, Argument $a, $basePath)
         $ret .= '<div class = "author question_author"><a href = "'.$a->url($basePath).'edit/">'.$sTemplate->getString("ARGUMENT_EDIT", Array("[TIMELEFT]"), Array($a->timeLeftEdit())).'</a></div>';
     }else
     {
-        $ret .= '<div class = "author question_author">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($a->timeSince(), $a->authorLink())).'</div>';
+        $ret .= '<div class = "author question_author">'.$sTemplate->getString("QUESTION_AUTHOR", Array("[TIMESINCE]", "[USERNAME]"), Array($a->timeSince(), $a->author())).'</div>';
     }
     $ret .= '
   <div class = "argument_'.($a->type() == ARGUMENT_PRO ? "pro" : "con").'_bar"></div>
