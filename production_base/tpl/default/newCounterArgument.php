@@ -77,7 +77,7 @@ drawArgumentBoxExtended($sPage->getQuestion(), $sPage->getView(), $sPage->basePa
           <div class = "label"><? echo $sTemplate->getString("NEW_ARGUMENT_DETAILS"); ?></div>
           <div class = "input">
             <textarea id = "new_argument_details" name = "new_argument_details"></textarea>
-            <span class="characters_written"><span id="argument_details_chars_written">0</span> <? echo $sTemplate->getString("CHARS_WRITTEN_LEFT"); ?></span>
+            <span class="characters_written"><span id="argument_details_chars_written">0</span> <? echo $sTemplate->getString("CHARS_WRITTEN"); ?></span>
 <? if(PHPSPELLCHECK_ENABLED) { ?>
 <div id = "btn_spellcheck_details" class = "spellcheck_button spellcheck_button_args"></div>
 <script type = "text/javascript">wikiargument.initSpellcheck('new_argument_details', 'btn_spellcheck_details', 'de');</script>

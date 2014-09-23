@@ -69,7 +69,7 @@ drawArgumentBoxExtended($sPage->getQuestion(), $sPage->getView(), $sPage->basePa
           <div class = "label"><? echo $sTemplate->getString("NEW_ARGUMENT_DETAILS"); ?></div>
           <div class = "input">
             <textarea id = "new_argument_details" name = "new_argument_details"><? echo $sPage->counterArgument()->detailsPlain(); ?></textarea>
-                <span class="characters_written"><span id="argument_details_chars_written"><? echo strlen($sPage->counterArgument()->detailsPlain()); ?></span> chars written</span>
+                <span class="characters_written"><span id="argument_details_chars_written"><? echo strlen($sPage->counterArgument()->detailsPlain()); ?></span>  <? echo $sTemplate->getString("CHARS_WRITTEN"); ?></span>
           </div>
           <div class="clearfix"></div>
         </div>
