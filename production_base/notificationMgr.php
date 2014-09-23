@@ -81,7 +81,7 @@ class NotificationMgr
             }
 
             $subject = $sTemplate->getString("NOTIFICATION_NEW_ARGUMENT_SUBJECT",
-                Array("[QUESTION]", "[ARGUMENT]"), Array($q->title(), $a->headline());
+                Array("[QUESTION]", "[ARGUMENT]"), Array($q->title(), $a->headline()));
             $message = $sTemplate->getString("NOTIFICATION_NEW_ARGUMENT_BODY",
                                              Array("[USERNAME]", "[AUTHOR]", "[URL]", "[QUESTION]", "[ARGUMENT]", "[UNFOLLOW_URL]", "[PROFILE_URL]"),
                                              Array($row->userName, $a->author(), $url, $q->title(), $a->headline(), $unfollowUrl, $profileUrl));
