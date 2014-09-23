@@ -696,7 +696,7 @@ function drawArgumentBoxFull(Question $q, Argument $a, $basePath)
 <div class = "argument_full">
   <div class = "stats question_stats">
     <div class = "points question_points" id = "points_text_'.$q->questionId().'_'.$argumentId.'">'.$numPoints.'</div>
-    <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("QUESTION_POINTS", Array(), Array(), $numPoints).'</div>
+    <div class = "points_text question_points_text">'.$sTemplate->getStringNumber("ARGUMENT_POINTS", Array(), Array(), $numPoints).'</div>
     '.voteUp('argument_vote_up', $q->questionId(), $argumentId, $a->type(), $q->type()).'
     '.voteDn('argument_vote_dn', $q->questionId(), $argumentId, $a->type(), $q->type()).'
   </div>
