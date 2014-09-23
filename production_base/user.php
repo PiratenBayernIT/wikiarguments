@@ -67,7 +67,7 @@ class User
 
             if($sendConfirmation)
             {
-                $confirmationCode = md5(time());
+                $confirmationCode = md5(time()+rand());
                 $confirmationLink = $sTemplate->getRoot()."confirmation.php?userId=".$this->userId."&confirmationCode=".$confirmationCode;
 
                 $this->addConfirmationCode("CONFIRMATION_TYPE_EMAIL", $confirmationCode);
@@ -324,7 +324,7 @@ class User
     {
         global $sTemplate;
 
-        $confirmationCode = md5(time());
+        $confirmationCode = md5(time()+rand());
         $confirmationLink = $sTemplate->getRoot()."confirmation.php?userId=".$this->userId."&confirmationCode=".$confirmationCode;
         $confirmationLink = "<a href = '".$confirmationLink."'>".$confirmationLink."</a>";
 
