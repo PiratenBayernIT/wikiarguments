@@ -236,6 +236,8 @@ INSERT INTO `localization` (`loc_key`, `loc_language`, `loc_val`) VALUES
 ('SUBMIT_UNFOLLOW_QUESTION', 'de', 'Entfolgen'),
 ('TAGS_DIVIDE', 'de', 'mit Kommata trennen |'),
 ('TAGS_FILTER', 'de', 'Tag: [TAGS]'),
+('TERMS_OF_USE', 'de', 'Nutzungsbedingungen'),
+('TERMS_OF_USE_URL', 'de', ''),
 ('TIME_SINCE_DAYS', 'de', 'vor [DAYS] Tagen'),
 ('TIME_SINCE_DAYS_NULL', 'de', 'vor [DAYS] Tagen'),
 ('TIME_SINCE_DAYS_ONE', 'de', 'vor einem Tag'),
