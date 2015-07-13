@@ -1775,12 +1775,16 @@ cursor: pointer;
   padding-top: 18px;
 }
 
+.login .text {
+  font-size: 18px;
+}
+
 .signup .label,
 .login .label {
   width: 130px;
   float: left;
   position: relative;
-  font-size: 16px;
+  font-size: 18px;
   font-family: Imprima, Tahoma, Geneva, sans-serif;
 }
 

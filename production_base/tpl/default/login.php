@@ -44,7 +44,7 @@ $language   = $sTemplate->getLangBase();
   <div class = "login">
     <form id = "form_login" action = "<? echo $sTemplate->getRoot(); ?>login/" method = "POST">
       <div class = "row">
-        <div class = "headline"><? echo $sTemplate->getString("LOGIN_HEADLINE"); ?></div>
+        <div class = "text"><? echo $sTemplate->getString("LOGIN_HEADLINE"); ?></div>
       </div>
       <div class = "row" style = "margin-top: 35px;">
         <div class = "label"><? echo $sTemplate->getString("LOGIN_USERNAME"); ?></div>
@@ -62,7 +62,6 @@ $language   = $sTemplate->getLangBase();
 
       <div class = "row row_submit">
         <button class = "button_blue" onclick = "$('#form_login').submit();"><? echo $sTemplate->getString("LOGIN_SUBMIT"); ?></button>
-        <span class = "button_blue" onclick = "wikiargument.passRequest(); return false;"><? echo $sTemplate->getString("LOGIN_FORGOT_PASSWORD"); ?></span>
       </div>
 
       <input type = "hidden" name = "login" id = "login_mode_login" value = "1" />
