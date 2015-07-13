@@ -70,8 +70,7 @@ wikiargument.raiseNotice("<? echo $notice; ?>");
           <a href ="<? echo $sTemplate->getString("TERMS_OF_USE_URL"); ?>"><? echo $sTemplate->getString("TERMS_OF_USE"); ?></a> |
           <a href ="<? echo $sTemplate->getString("FOOTER_OTHER_URL"); ?>"><? echo $sTemplate->getString("FOOTER_OTHER"); ?></a> |
           <? echo $sTemplate->getString("FOOTER_COPYRIGHT"); ?> |
-          <a href = '#' onclick = "$('#footer_menu').show(); return false;"><? echo $sTemplate->getString("FOOTER_MENU"); ?></a> |
-          <a href = 'http://www.wikiarguments.net'>Powered by Wikiarguments</a>
+          <a href = '#' onclick = "$('#footer_menu').show(); return false;"><? echo $sTemplate->getString("FOOTER_MENU"); ?></a>
         </div>
         <div id = "footer_menu" style = "display: none;">
           <? echo $sTemplate->getString("FOOTER_OPEN_SOURCE"); ?> |
