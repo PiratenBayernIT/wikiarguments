@@ -192,12 +192,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8800', end
   font-weight: bold;
 }
 
-.header_userstatus {
-  font-size:18px;
-  float: right;
-  margin-right: 250px;
-}
-
 .header_signup {
   width: 175px;
   height: 20px;

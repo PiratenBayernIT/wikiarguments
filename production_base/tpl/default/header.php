@@ -114,7 +114,6 @@ var wikiargument = new _Wikiargument('<? echo $sUser->getUserId(); ?>');
             <a href="<? echo $sTemplate->getRoot(); ?>"><? echo $sTemplate->getString("HEADER_TEXT"); ?></a>
           </div>
   <? if($sUser->isLoggedIn()) { ?>
-          <div class="header_userstatus"><? echo htmlspecialchars($sUser->getUserStatus()); ?></div>
           <div id = "header_menu" class = "header_menu">
             <div class = "username">
               <? echo htmlspecialchars($sUser->getUserName()); ?>
