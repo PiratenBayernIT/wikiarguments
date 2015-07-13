@@ -45,8 +45,6 @@ if(1 || DEBUG_OPCODES)
     define("SMSG_UNFOLLOW_QUESTION_RESPONSE",           "SMSG_UNFOLLOW_QUESTION_RESPONSE");
     define("CMSG_VOTE",                                 "CMSG_VOTE");
     define("SMSG_VOTE_RESPONSE",                        "SMSG_VOTE_RESPONSE");
-    define("CMSG_SELECT_FACTION",                       "CMSG_SELECT_FACTION");
-    define("SMSG_SELECT_FACTION_RESPONSE",              "SMSG_SELECT_FACTION_RESPONSE");
 }else
 {
 

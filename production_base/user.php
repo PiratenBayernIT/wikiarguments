@@ -181,61 +181,6 @@ class User
         return $this->userId;
     }
 
-    public function getFactionByQuestionId($questionId)
-    {
-        global $sDB;
-
-        if(!$this->isLoggedIn())
-        {
-            return FACTION_NONE;
-        }
-
-        $res = $sDB->exec("SELECT * FROM `user_factions` WHERE `userId` = '".i($this->getUserId())."' AND `questionId` = '".i($questionId)."' LIMIT 1;");
-        while($row = mysql_fetch_object($res))
-        {
-            return $row->state;
-        }
-
-        return FACTION_NONE;
-    }
-
-    public function setFactionByQuestionId($questionId, $faction)
-    {
-        global $sDB, $sStatistics;
-
-        if(!VOTE_FACTIONS)
-        {
-            return;
-        }
-        validateFaction($faction);
-
-        if($this->getFactionByQuestionId($questionId) == $faction)
-        {
-            return;
-        }
-
-        $question = new Question($questionId);
-
-        if($this->isLoggedIn())
-        {
-            $sDB->exec("DELETE FROM `user_factions` WHERE `userId` = '".$this->getUserId()."' AND `questionId` = '".i($questionId)."';");
-
-            $res = $sDB->exec("SELECT * FROM `user_votes` WHERE `userId` = '".i($this->getUserId())."' AND `questionId` = '".i($questionId)."' AND `argumentId` != 0;");
-            while($row = mysql_fetch_object($res))
-            {
-                $sStatistics->vote($question, $row->argumentId, VOTE_NONE, $this, true);
-            }
-        }
-
-        if($faction == FACTION_NONE)
-        {
-            return;
-        }
-
-        $sDB->exec("INSERT INTO `user_factions` (`factionId`, `userId`, `questionId`, `state`) VALUES
-                                                (NULL, '".i($this->getUserId())."', '".i($questionId)."', '".i($faction)."');");
-    }
-
     public function getScoreQuestions()
     {
         return $this->scoreQuestions;

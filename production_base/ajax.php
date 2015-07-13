@@ -50,8 +50,7 @@ $handler = false;
 $packetTable = Array(CMSG_REPORT_ERROR              => "CmsgReportError",
                      CMSG_FOLLOW_QUESTION           => "CmsgFollowQuestion",
                      CMSG_UNFOLLOW_QUESTION         => "CmsgUnfollowQuestion",
-                     CMSG_VOTE                      => "CmsgVote",
-                     CMSG_SELECT_FACTION            => "CmsgSelectFaction");
+                     CMSG_VOTE                      => "CmsgVote");
 
 if(@$packetTable[$requestObj->getString('opcode')])
 {

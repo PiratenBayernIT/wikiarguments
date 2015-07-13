@@ -46,17 +46,6 @@ function voteUp($css, $questionId, $argumentId, $argumentType = ARGUMENT_INDEF)
         $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_LOGGED_IN")."\"); return false;";
     }
 
-    if($argumentId && $canVote && CONSTRAIN_FACTIONS)
-    {
-        $faction = $sUser->getFactionByQuestionId($questionId);
-
-        if($faction != $argumentType)
-        {
-            $canVote  = false;
-            $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_VOTE_NOT_CHECKED_IN")."\"); return false;";
-        }
-    }
-
     $ret = "";
 
     if($vote != VOTE_UP)
@@ -526,83 +515,6 @@ function drawPagination($cur, $max, $range, $url, $class)
     echo '</div>';
 }
 
-function drawQuestionDistribution(Question $q)
-{
-    global $sTemplate, $sUser;
-
-    $faction = $sUser->getFactionByQuestionId($q->questionId());
-
-    $onSubmit = "";
-    if(!$sUser->isLoggedIn() &&
-       ($q->type() != QUESTION_TYPE_UNLISTED))
-    {
-        $onSubmit = "wikiargument.raiseError(\"".$sTemplate->getString("NOTICE_CHECKIN_NOT_LOGGED_IN")."\"); return false;";
-    }
-
-    $content = "
-<div class = 'vote_distribution'>";
-
-
-
-    if($faction == FACTION_NONE || $faction == FACTION_CON)
-    {
-        $content .= "
-  <form action = '".$q->url()."' method = 'POST' id = 'faction_checkin_pro' onsubmit = '".$onSubmit."'>
-    <input type = 'hidden' name = 'faction' value = '".FACTION_PRO."' />
-    <input type = 'hidden' name = 'faction_select' value = '1' />
-    <button class = 'checkin_pro' >".$sTemplate->getString("CHECKIN_BUTTON")."</button>
-  </form>";
-    }else
-    {
-        $content .= "
-  <form action = '".$q->url()."' method = 'POST' id = 'faction_checkin_pro' onsubmit = '".$onSubmit."'>
-    <input type = 'hidden' name = 'faction' value = '".FACTION_NONE."' />
-    <input type = 'hidden' name = 'faction_select' value = '1' />
-    <div class = 'checkin_pro_confirmed' onclick = \"$('#faction_checkin_pro').submit();\">
-      <div class = 'checkin_icon'></div>
-      <p>".$sTemplate->getString("CHECKIN_PRO_CONFIRMED")."</p>
-    </div>
-  </form>";
-    }
-
-    $numCheckins     = $q->numCheckIns();
-
-  $content .= "
-  <div class = 'pro_perc'>".$sTemplate->getString("QUESTION_DISTRIBUTION_PRO_PERC", Array("[PERC]"), Array(ceil($q->percPro() * 100)))."</div>
-  <div class='question_vote_count'>".$sTemplate->getStringNumber("QUESTION_DISTRIBUTION_NUM_CHECKINS", Array("[NUM]"), Array($numCheckins), $numCheckins)."<div class='arrow'></div></div>
-  <div class = 'distribution'>
-    <div class = 'distribution_pro' style = 'width: ".ceil($q->percPro() * 372)."px'></div>
-    <div class = 'distribution_con ' style = 'width: ".(372 - ceil($q->percPro() * 372))."px; border-radius:".computeBorderRadius(372 - ceil($q->percPro() * 372))."'></div>
-  </div>";
-
-    if($faction == FACTION_NONE || $faction == FACTION_PRO)
-    {
-        $content .= "
-  <form action = '".$q->url()."' method = 'POST' id = 'faction_checkin_con' onsubmit = '".$onSubmit."'>
-    <input type = 'hidden' name = 'faction' value = '".FACTION_CON."' />
-    <input type = 'hidden' name = 'faction_select' value = '1' />
-    <button class = 'checkin_con' >".$sTemplate->getString("CHECKIN_BUTTON")."</button>
-  </form>";
-    }else
-    {
-        $content .= "
-  <form action = '".$q->url()."' method = 'POST' id = 'faction_checkin_con' onsubmit = '".$onSubmit."'>
-    <input type = 'hidden' name = 'faction' value = '".FACTION_NONE."' />
-    <input type = 'hidden' name = 'faction_select' value = '1' />
-    <div class = 'checkin_con_confirmed' onclick = \"$('#faction_checkin_con').submit();\">
-      <div class = 'checkin_icon'></div>
-      <p>".$sTemplate->getString("CHECKIN_CON_CONFIRMED")."</p>
-    </div>
-  </form>";
-    }
-
-  $content .= "
-  <div class = 'con_perc'>".$sTemplate->getString("QUESTION_DISTRIBUTION_CON_PERC", Array("[PERC]"), Array(floor($q->percCon() * 100)))."</div>
-</div>
-    ";
-    echo $content;
-}
-
 function drawArgument(Question $q, Argument $a, $basePath, $abstract = true)
 {
     global $sTemplate, $sUser;
@@ -694,7 +606,6 @@ function drawArgumentList(Question $q, $basePath)
 {
     global $sTemplate, $sUser, $sPermissions;
 
-    $faction = $sUser->getFactionByQuestionId($q->questionId());
     $onClickHandler = "";
     if(!$sUser->isLoggedIn())
     {

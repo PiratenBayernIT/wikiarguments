@@ -82,28 +82,6 @@ class StatisticsMgr
         }
         $q = mysql_fetch_object($res);
 
-        if (VOTE_FACTIONS) {
-            $sTimer->start("updateQuestionStats::factionData");
-
-            $num = Array(FACTION_PRO => 0, FACTION_CON => 0);
-            $res = $sDB->exec("SELECT COUNT(*) as `cnt`, `state` FROM `user_factions` WHERE `questionId` = '".i($questionId)."' GROUP BY `state`");
-            while($row = mysql_fetch_object($res))
-            {
-                $num[$row->state] = $row->cnt;
-            }
-
-            $total = max($num[FACTION_PRO] + $num[FACTION_CON], 1);
-
-            $additionalData              = unserialize($q->additionalData);
-            $additionalData->percPro     = $num[FACTION_PRO] / $total;
-            $additionalData->percCon     = $num[FACTION_CON] / $total;
-            $additionalData->numCheckIns = $num[FACTION_PRO] + $num[FACTION_CON];
-
-            $sDB->exec("UPDATE `questions` SET `additionalData` = '".mysql_real_escape_string(serialize($additionalData))."' WHERE `questionId` = '".i($questionId)."' LIMIT 1;");
-
-            $sTimer->stop("updateQuestionStats::factionData");
-        }
-
         $this->updateQuestionScore($questionId);
 
         $this->updateArgumentScoreBatch($questionId);

@@ -171,43 +171,4 @@ class CmsgVote extends PacketHandler
         }
     }
 }
-
-class CmsgSelectFaction extends PacketHandler
-{
-    public function CmsgSelectFaction(Request $requestObj, Packet $response)
-    {
-        parent::PacketHandler($requestObj, $response);
-
-        $this->handlePacket();
-    }
-
-    public function handlePacket()
-    {
-        global $sUser, $sDB, $sTemplate, $sLog;
-        $requestObj = $this->_requestObj;
-        $response   = $this->_response;
-        $qId        = $requestObj->getInt(Array("data", "qId"));
-        $faction    = $requestObj->getInt(Array("data", "faction"));
-
-        $response->data->result  = 0;
-        $response->opcode = SMSG_SELECT_FACTION_RESPONSE;
-
-        if(!validateFaction($faction, false))
-        {
-            return false;
-        }
-
-        $question = new Question($qId);
-        if($question->questionId() == 0)
-        {
-            return false;
-        }
-
-        $sUser->setFactionByQuestionId($qId, $faction);
-
-        $sStatistics->updateQuestionStats($qId);
-
-        $response->data->result = 1;
-    }
-}
 ?>

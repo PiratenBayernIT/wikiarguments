@@ -73,20 +73,6 @@ class PageQuestion extends Page
         {
             $this->setShortUrl($this->question->shortUrl());
         }
-
-        if($sRequest->getInt("faction_select") && VOTE_FACTIONS && $sUser->isLoggedIn() )
-        {
-            $faction = $sRequest->getInt("faction");
-
-            validateFaction($faction);
-
-            $sUser->setFactionByQuestionId($this->question->questionId(), $faction);
-
-            $sStatistics->updateQuestionStats($this->question->questionId());
-
-            header("Location: ".$this->question->url());
-            exit;
-        }
     }
 
     public function getQuestion()

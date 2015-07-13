@@ -43,7 +43,6 @@ class PageCounterArgument extends Page
         $this->question = false;
         $this->view     = VIEW_ARGUMENT;
         $this->faction  = $sRequest->getInt("faction");
-        validateFaction($this->faction);
         $argumentTitle  = $sRequest->getString("argument");
 
         $res = $sDB->exec("SELECT * FROM `questions` WHERE `url` = '".mysql_real_escape_string($questionTitle)."' LIMIT 1;");

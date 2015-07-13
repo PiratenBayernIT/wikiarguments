@@ -58,10 +58,6 @@ define("ARGUMENT_INDEF",                0);
 define("ARGUMENT_PRO",                  1);
 define("ARGUMENT_CON",                  -1);
 
-define("FACTION_NONE",                  0);
-define("FACTION_PRO",                   1);
-define("FACTION_CON",                   -1);
-
 define("SORT_NONE",                     0);
 define("SORT_SCORE",                    0);
 

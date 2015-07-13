@@ -208,21 +208,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `userName` (`userName`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- --------------------------------------------------------
-
---
--- Table structure for table `user_factions`
---
-
-CREATE TABLE IF NOT EXISTS `user_factions` (
-  `factionId` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL,
-  `questionId` int(11) NOT NULL,
-  `state` tinyint(4) NOT NULL,
-  PRIMARY KEY (`factionId`),
-  KEY `userId` (`userId`,`questionId`),
-  KEY `questionId` (`questionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------

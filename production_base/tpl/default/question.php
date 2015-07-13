@@ -45,10 +45,6 @@ $language   = $sTemplate->getLangBase();
 
 drawQuestionBoxExtended($sPage->getQuestion(), $sPage->getView(), $sPage->basePath(), false, true);
 
-if($sPage->getView() == VIEW_DISCUSSION && VOTE_FACTIONS)
-{
-    drawQuestionDistribution($sPage->getQuestion());
-}
 ?>
   </div>
 

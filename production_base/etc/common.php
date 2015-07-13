@@ -177,40 +177,6 @@ function getPositionByPostalCode($country_code, $postal_code)
     return $ret;
 }
 
-function validateFaction($faction, $redirect = true)
-{
-    global $sTemplate;
-
-    if(!in_array($faction, Array(FACTION_PRO, FACTION_CON, FACTION_NONE)))
-    {
-        if($redirect)
-        {
-            $sTemplate->error($sTemplate->getString("ERROR_INVALID_FACTION"));
-        }
-
-        return false;
-    }
-
-    return true;
-}
-
-function validateVote($vote, $redirect = true)
-{
-    global $sTemplate;
-
-    if(!in_array($faction, Array(VOTE_UP, VOTE_DN, VOTE_NONE)))
-    {
-        if($redirect)
-        {
-            $sTemplate->error($sTemplate->getString("ERROR_INVALID_VOTE"));
-        }
-
-        return false;
-    }
-
-    return true;
-}
-
 function validateQuestionType($type, $redirect = true)
 {
     global $sTemplate;
@@ -231,19 +197,6 @@ function validateQuestionType($type, $redirect = true)
 function validateQuestionFlags($flags, $redirect = true)
 {
     return true;
-}
-
-function complementFaction($faction)
-{
-    if($faction == FACTION_PRO)
-    {
-        return FACTION_CON;
-    }else if($faction == FACTION_CON)
-    {
-        return FACTION_PRO;
-    }
-
-    return FACTION_NONE;
 }
 
 function timeSinceString($date)

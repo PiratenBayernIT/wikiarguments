@@ -188,7 +188,6 @@ class PageEditQuestion extends Page
                                        WHERE `questionId` = '".i($this->question()->questionId())."' LIMIT 1;");
 
         $sDB->exec("DELETE FROM `tags` WHERE `questionId` = '".i($this->question()->questionId())."';");
-        $sDB->exec("DELETE FROM `user_factions` WHERE `questionId` = '".i($this->question()->questionId())."';");
 
         $sStatistics->resetQuestionVotes($this->question());
 
