@@ -281,10 +281,6 @@ class StatisticsMgr
             return false;
         }
 
-        if(!$argumentId && !$user->isEntitled()) {
-             return false;
-        }
-
         if($sPermissions->getPermission($user, ACTION_VOTE) == PERMISSION_DISALLOWED)
         {
             return false;
