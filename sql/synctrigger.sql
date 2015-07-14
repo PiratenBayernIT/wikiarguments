@@ -23,9 +23,9 @@ BEGIN
         NEW.password, 
         NEW.salt,
         NEW.dateAdded,
-        NEW.user_last_action, 
-        NEW.scoreQuestions, 
-        NEW.scoreArguments);
+        0, 
+        0, 
+        0);
 END$$
 DELIMITER ;
 
@@ -36,19 +36,20 @@ DELIMITER $$
 CREATE TRIGGER `sync_users_update` AFTER UPDATE ON `users` 
 FOR EACH ROW 
 BEGIN
-    UPDATE $DEST.users 
-    SET
-        userName = NEW.userName, 
-        email = NEW.email, 
-        `group` = NEW.`group`, 
-        password = NEW.password, 
-        salt = NEW.salt, 
-        dateAdded = NEW.dateAdded, 
-        user_last_action = NEW.user_last_action, 
-        scoreQuestions = NEW.scoreQuestions, 
-        scoreArguments = NEW.scoreArguments
-    WHERE userId = NEW.userId
-    ;
+    IF OLD.userName != NEW.userName 
+    OR OLD.email != NEW.email 
+    OR OLD.group != NEW.group 
+    OR OLD.password != NEW.password 
+    OR OLD.salt != NEW.salt THEN
+        UPDATE $DEST.users 
+        SET
+            userName = NEW.userName, 
+            email = NEW.email, 
+            `group` = NEW.`group`, 
+            password = NEW.password, 
+            salt = NEW.salt
+        WHERE userId = NEW.userId;
+    END IF;
 END$$
 DELIMITER ;
 
@@ -62,3 +63,5 @@ BEGIN
     DELETE FROM $DEST.users WHERE userId = OLD.userId;
 END$$
 DELIMITER ;
+
+
