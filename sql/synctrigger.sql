@@ -1,6 +1,11 @@
+---
+-- these triggers are used for user synchronization from one wikiarguments instance to another
+---
+
 DROP TRIGGER IF EXISTS `sync_users_insert`;
 DELIMITER $$
  
+-- copy new users from one wikiarguments db to another
 CREATE TRIGGER `sync_users_insert` AFTER INSERT ON `users` 
 FOR EACH ROW 
 BEGIN
@@ -33,6 +38,7 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `sync_users_update`;
 DELIMITER $$
  
+-- propagate user updates to another db
 CREATE TRIGGER `sync_users_update` AFTER UPDATE ON `users` 
 FOR EACH ROW 
 BEGIN
@@ -57,6 +63,7 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `sync_users_delete`;
 DELIMITER $$
  
+-- propagate user deletes to another db
 CREATE TRIGGER `sync_users_delete` AFTER DELETE ON `users` 
 FOR EACH ROW 
 BEGIN
